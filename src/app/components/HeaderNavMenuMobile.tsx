@@ -3,6 +3,7 @@ import { Icon } from "./ui/Icon";
 import { NavItem } from "./HeaderNavItem";
 import { MainLogo } from "./MainLogo";
 import { LinkBtn } from "./ui/LinkBtn";
+import { navLinks, cvPath } from "../constants/navLinks";
 
 interface HeaderNavMenuMobileProps {
   onClose: () => void;
@@ -18,36 +19,23 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuMobileProps> = ({
       className="relative z-20 flex flex-col justify-between items-center text-2xl text-textDark bg-bg gap-10 px-4 pt-14 pb-4"
     >
       <MainLogo classNameLogo="text-2xl text-textDark" />
-      <NavItem>
-        <Link href="/#projects" aria-label="Link to projects" className="p-2">
-          Projects
-        </Link>
-      </NavItem>
-      <NavItem>
-        <Link href="/#services" aria-label="Link to services" className="p-2">
-          Services
-        </Link>
-      </NavItem>
-      <NavItem>
-        <Link
-          href="https://github.com/Sergiy5"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Link to GitHub"
-          className="p-2"
-        >
-          GitHub
-        </Link>
-      </NavItem>
-
-      <NavItem>
-        <Link href="/#contacts" aria-label="Link to contacts" className="p-2">
-          Contacts
-        </Link>
-      </NavItem>
+      {navLinks
+        .filter(({ label }) => label !== "My CV")
+        .map(({ label, href, external }) => (
+          <NavItem key={label}>
+            <Link
+              href={href}
+              aria-label={`Link to ${label}`}
+              className="p-2"
+              {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+            >
+              {label}
+            </Link>
+          </NavItem>
+        ))}
 
       <LinkBtn
-        href="cv/Serhii_Kushnir_Full_Stack_Developer.pdf"
+        href={cvPath}
         ariaLabel="Download CV"
         clasName="downloadLinkBtn w-full flex"
       >
