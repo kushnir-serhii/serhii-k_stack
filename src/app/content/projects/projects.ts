@@ -1,5 +1,59 @@
 export const PROJECTS = [
   {
+    title: "CloudeBitPay: Cryptocurrency Payment Gateway",
+    role: "Full stack Engineer",
+    url: null,
+    techStack: "",
+    imgSrcArr: [
+      "/images/cloud_bit_pay.webp",
+      "/images/cloud_bit_pay_phone.webp",
+    ],
+    description: [
+      `CloudeBitPay is a cryptocurrency payment gateway that enables seamless transactions using various digital currencies.`,
+      ``,
+    ],
+  },
+  {
+    title: "Beans: ",
+    role: "Front End Developer",
+    url: null,
+    techStack: "React, Vite, TS, Tailwind CSS, Zustand, Lightweight Charts",
+    imgSrcArr: [
+      "/images/beans.webp",
+      "/images/beans_2_phones.webp",
+      "/images/beans_phone.webp",
+    ],
+    description: [``, ``],
+  },
+  {
+    title: "Betski: Event Aggregator",
+    role: "Front End Developer",
+    url: null,
+    techStack:
+      "React, TS, Next.js, Tailwind CSS",
+    imgSrcArr: ["/images/betski.webp", "/images/betski_phone.webp"],
+    description: [
+      `Betski is a web app that enables users to discover, create, and manage events seamlessly.`,
+      `As a Frontend Developer on the Betski project, I developed secure and user-friendly authentication features using React Hook Form and React Thunk. Built with React, Vite, TypeScript, and Tailwind CSS, I ensured a smooth registration and login experience. Additionally, I implemented an interactive Slick Slider, enhancing the platform’s dynamic content presentation.`,
+    ],
+  },
+  {
+    title: "Apeing: NFT Marketplace",
+    role: "Front End Developer",
+    url: null,
+    techStack: "React, Next.js, TS, Tailwind CSS, Zustand",
+    imgSrcArr: [
+      "/images/apeing.webp",
+      "/images/apeing_phone.webp",
+      "/images/apeing_2_phones.webp",
+    ],
+    description: [
+      `Apeing is a web app that enables users to buy, sell, and trade NFTs seamlessly.`,
+      `As a Frontend Developer on the Apeing project, I developed secure and user-friendly authentication features using React Hook Form and React Thunk. Built with React, Next.js, TypeScript, and Tailwind CSS, I ensured a smooth registration and login experience. Additionally, I implemented an interactive Slick Slider, enhancing the platform’s dynamic content presentation.`,
+    ],
+  },
+  // ===================================== OLDER PROJECTS =====================================
+  {
     title: "Movie Matching Web Application ",
     role: "Full Stack Developer",
     url: "https://www.reel-reveal.club/",
