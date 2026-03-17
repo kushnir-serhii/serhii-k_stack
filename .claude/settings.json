@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/serg9/Documents/GitHub/beans-frontend/src/**)",
+      "Read(//c/Users/serg9/Documents/GitHub/betski-chart//**)",
+      "Read(//c/Users/serg9/Documents/GitHub/apeing-ai-frontend/**)"
+    ]
+  }
+}
