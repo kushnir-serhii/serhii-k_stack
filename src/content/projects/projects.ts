@@ -395,8 +395,8 @@ export const PROJECTS: Project[] = [
     year: "2022",
     status: "private",
     url: null,
-    duration: "2 months",
-    team: "Solo engineer",
+    duration: "4 months",
+    team: "5 engineer and 2 designers",
     techStack:
       "React, TS, Vite, Tailwind CSS, Redux Thunk, Slick Slider, React-Hook-Form",
     imgSrcArr: ["/images/evently.webp", "/images/evently_register.webp"],
