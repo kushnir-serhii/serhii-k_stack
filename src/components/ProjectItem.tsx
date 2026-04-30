@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ShowMoreBtn } from "./ui/ShowMoreBtn";
 import { Icon } from "./ui/Icon";
 import { useState } from "react";
@@ -10,6 +11,7 @@ import { animationProjectImage, animationTitleSection } from "../variables";
 
 interface IProject {
   projectNuber: number;
+  slug?: string;
   title: string;
   role: string;
   url: string | null;
@@ -24,7 +26,7 @@ interface ProjectItemProps {
 export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
   const [isShowDescription, setIsShowDescription] = useState(false);
 
-  const { projectNuber, title, role, techStack, imgSrcArr, url, description } = project;
+  const { projectNuber, slug, title, role, techStack, imgSrcArr, url, description } = project;
 
   return (
     <div className="flex flex-col items-start gap-10 py-12 lg:py-[100px] h-full">
@@ -67,7 +69,7 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
             </div>
 
             {/* Button =============================================================== */}
-            <motion.div {...animationTitleSection}>
+            <motion.div {...animationTitleSection} className="flex items-center gap-4">
               <ShowMoreBtn
                 ariaLabel="Show more"
                 onClick={() => {
@@ -85,6 +87,15 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
                   }`}
                 />
               </ShowMoreBtn>
+              {slug && (
+                <Link
+                  href={`/projects/${slug}`}
+                  className="hidden lg:flex items-center gap-2 text-sm font-medium text-accentGreen hover:opacity-75 transition-opacity"
+                >
+                  Case study
+                  <Icon id="icon-arrow-up-right" width={12} height={12} />
+                </Link>
+              )}
             </motion.div>
           </div>
 

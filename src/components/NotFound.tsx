@@ -3,14 +3,9 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
-const NotFoundAnimeDynamic = dynamic(
-  () =>
-    import("./NotFoundAnime").then((module) => ({
-      default: module.NotFoundAnime,
-    })),
-  {
-    ssr: false,
-  }
+const NotFoundAnime = dynamic(
+  () => import("./NotFoundAnime").then((module) => ({ default: module.NotFoundAnime })),
+  { ssr: false }
 );
 
 
@@ -33,7 +28,7 @@ export const NotFound: React.FC = () => {
         </div>
       </div>
       <div className="flex flex-col justify-center items-start w-full lg:max-w-[625px]  gap-6">
-        <NotFoundAnimeDynamic />
+        <NotFoundAnime />
       </div>
     </div>
   );

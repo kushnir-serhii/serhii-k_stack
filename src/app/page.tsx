@@ -1,7 +1,7 @@
-import { ProjectsList } from "./components/ProjectsList";
-import { Hero } from "./components/Hero";
-import { ServicesList } from "./components/ServicesList";
-import { ClockContactsSection } from "./components/ClockContactSection";
+import { ProjectsList } from "@/components/ProjectsList";
+import { Hero } from "@/components/Hero";
+import { ServicesList } from "@/components/ServicesList";
+import { ClockContactsSection } from "@/components/ClockContactSection";
 
 export default function Home() {
   return (
