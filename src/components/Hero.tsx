@@ -6,11 +6,9 @@ import { motion } from "motion/react";
 import { LinkBtn } from "./ui/LinkBtn";
 import { animationHeroComponent, animationHeroTitle } from "../variables";
 
-const GitAnimeDynamic = dynamic(
+const GitAnime = dynamic(
   () => import("./GitAnime").then((module) => ({ default: module.GitAnime })),
-  {
-    ssr: false,
-  }
+  { ssr: false }
 );
 export const Hero: React.FC = () => {
   
@@ -60,7 +58,7 @@ export const Hero: React.FC = () => {
               aria-label="Link to GitHub"
               className="flex items-end w-full lg:max-w-[540px] "
             >
-              <GitAnimeDynamic />
+              <GitAnime />
             </Link>
           </motion.div>
           {/* Animation end */}

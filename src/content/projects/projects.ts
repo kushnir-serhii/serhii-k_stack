@@ -39,7 +39,7 @@ export const PROJECTS: Project[] = [
     status: "live",
     url: null,
     client: "Fintech / iGaming",
-    duration: "6 months",
+    duration: "1 month",
     team: "Solo engineer",
     techStack:
       "Next.js 16, React 19, TypeScript, Tailwind CSS v4, SWR, Axios, Strapi 5, PostgreSQL, Cloudinary, React Hook Form, Zod, Embla Carousel, Recharts, Radix UI",
@@ -55,9 +55,8 @@ export const PROJECTS: Project[] = [
       "Architected the entire monorepo from scratch. Designed 40+ Strapi content types, built a type-safe data layer transforming raw CMS payloads into typed React props, and shipped 15 pages of dynamic, mobile-first sections.",
     outcome: [
       { val: "40+", label: "Strapi content types" },
-      { val: "15", label: "Dynamic pages" },
-      { val: "100", label: "Lighthouse (perf)" },
-      { val: "0", label: "Devs needed for copy" },
+      { val: "15", label: "Pages" },
+      { val: "90+", label: "Lighthouse scores" },
     ],
     build: [
       {
@@ -92,7 +91,8 @@ export const PROJECTS: Project[] = [
     url: null,
     duration: "4 months",
     team: "Solo engineer",
-    techStack: "React, Vite, TS, Tailwind CSS, Zustand, Lightweight Charts",
+    techStack:
+      "React, Vite, TS, Tailwind CSS, Zustand, Lightweight Charts, Privy React Auth",
     imgSrcArr: [
       "/images/beans.webp",
       "/images/beans_2_phones.webp",
@@ -136,7 +136,7 @@ export const PROJECTS: Project[] = [
     year: "2025",
     status: "private",
     url: null,
-    duration: "3 months",
+    duration: "1 months",
     team: "Solo engineer",
     techStack: "React, TS, Next.js, Tailwind CSS",
     imgSrcArr: ["/images/betski.webp", "/images/betski_phone.webp"],
@@ -149,7 +149,7 @@ export const PROJECTS: Project[] = [
     outcome: [
       { val: "15%", label: "Revenue share model" },
       { val: "2", label: "NFT collections" },
-      { val: "100", label: "Lighthouse (perf)" },
+      { val: "93+", label: "Lighthouse scores" },
     ],
     build: [
       {
@@ -178,7 +178,7 @@ export const PROJECTS: Project[] = [
     year: "2024",
     status: "live",
     url: "https://www.apeing.ai/",
-    duration: "5 months",
+    duration: "3 months",
     team: "2 engineers",
     techStack: "React, Next.js, TS, SCSS, Redux Toolkit, ApexCharts, Chart.js",
     imgSrcArr: [
@@ -224,7 +224,7 @@ export const PROJECTS: Project[] = [
     year: "2024",
     status: "live",
     url: "https://www.reel-reveal.club/",
-    duration: "2 months",
+    duration: "4 months",
     team: "Solo engineer",
     techStack:
       "React, TS, Next.js, Tailwind CSS, useSWR, React-Hook-Form, MongoDB, Openai API, TMDB API",
@@ -238,7 +238,7 @@ export const PROJECTS: Project[] = [
     outcome: [
       { val: "AI", label: "Powered matching" },
       { val: "Google", label: "Auth provider" },
-      { val: "Live", label: "Production app" },
+      { val: "Quiz", label: "Production app" },
     ],
     build: [
       {

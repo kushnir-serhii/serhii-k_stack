@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Space_Grotesk } from "next/font/google";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import "./globals.css";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
 
 const spaceGrotesk = Space_Grotesk({
   display: "swap",
