@@ -42,7 +42,7 @@ export const PROJECTS: Project[] = [
     duration: "1 month",
     team: "Solo engineer",
     techStack:
-      "Next.js 16, React 19, TypeScript, Tailwind CSS v4, SWR, Axios, Strapi 5, PostgreSQL, Cloudinary, React Hook Form, Zod, Embla Carousel, Recharts, Radix UI",
+      "Next.js, React, TypeScript, Tailwind CSS, SWR, Axios, CMS Strapi, PostgreSQL, Cloudinary, React Hook Form, Zod, Recharts, Radix UI",
     imgSrcArr: [
       "/images/cloud_bit_pay.webp",
       "/images/cloud_bit_pay_phone.webp",
@@ -56,7 +56,7 @@ export const PROJECTS: Project[] = [
     outcome: [
       { val: "40+", label: "Strapi content types" },
       { val: "15", label: "Pages" },
-      { val: "90+", label: "Lighthouse scores" },
+      { val: "93", label: "Lighthouse Performance score" },
     ],
     build: [
       {
@@ -136,7 +136,7 @@ export const PROJECTS: Project[] = [
     year: "2025",
     status: "private",
     url: null,
-    duration: "1 months",
+    duration: "1 month",
     team: "Solo engineer",
     techStack: "React, TS, Next.js, Tailwind CSS",
     imgSrcArr: ["/images/betski.webp", "/images/betski_phone.webp"],
@@ -149,7 +149,7 @@ export const PROJECTS: Project[] = [
     outcome: [
       { val: "15%", label: "Revenue share model" },
       { val: "2", label: "NFT collections" },
-      { val: "93+", label: "Lighthouse scores" },
+      { val: "93+", label: "Lighthouse Performance score" },
     ],
     build: [
       {
@@ -176,8 +176,8 @@ export const PROJECTS: Project[] = [
     subtitle: "Solana Trading & Copy Trade Platform",
     role: "Front End Developer",
     year: "2024",
-    status: "live",
-    url: "https://www.apeing.ai/",
+    status: "private",
+    url: null,
     duration: "3 months",
     team: "2 engineers",
     techStack: "React, Next.js, TS, SCSS, Redux Toolkit, ApexCharts, Chart.js",
@@ -227,18 +227,18 @@ export const PROJECTS: Project[] = [
     duration: "4 months",
     team: "Solo engineer",
     techStack:
-      "React, TS, Next.js, Tailwind CSS, useSWR, React-Hook-Form, MongoDB, Openai API, TMDB API",
+      "React, TS, Next.js, Tailwind CSS, useSWR, React-Hook-Form, MongoDB, Openai API, TMDB API, Stripe",
     imgSrcArr: ["/images/reel_reveal.webp", "/images/reel_reveal_mob.webp"],
     summary:
       "AI-driven movie recommendations with Google auth and personalized matching using OpenAI and TMDB APIs.",
     problem:
       "Users struggle to find movies they'll actually enjoy. Existing platforms rely on basic genre filtering — there was no AI-driven matching that understands nuanced user preferences.",
     approach:
-      "Built the full stack from scratch — Next.js frontend with Google Authentication, MongoDB for user data, OpenAI API for personalized recommendations, and TMDB API for movie metadata.",
+      "Built the full stack from scratch — Next.js with Google Authentication, MongoDB for user data, OpenAI API for personalized recommendations, and TMDB API for movie metadata.",
     outcome: [
       { val: "AI", label: "Powered matching" },
-      { val: "Google", label: "Auth provider" },
-      { val: "Quiz", label: "Production app" },
+      { val: "Stripe", label: "Payment integration" },
+      { val: "Quiz", label: "Driven AI matching" },
     ],
     build: [
       {
@@ -396,7 +396,7 @@ export const PROJECTS: Project[] = [
     status: "private",
     url: null,
     duration: "4 months",
-    team: "5 engineer and 2 designers",
+    team: "5 engineers and 2 designers",
     techStack:
       "React, TS, Vite, Tailwind CSS, Redux Thunk, Slick Slider, React-Hook-Form",
     imgSrcArr: ["/images/evently.webp", "/images/evently_register.webp"],
