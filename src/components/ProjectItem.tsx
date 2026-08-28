@@ -133,12 +133,12 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
         </div>
         {/* Description =============================================================== */}
         <div
-          className={`relative flex items-center justify-between flex-col lg:flex-row gap-12 lg:gap-24 w-full 
+          className={`relative flex items-center justify-between flex-col lg:flex-row gap-12 lg:gap-24 w-full overflow-hidden
             transition-all duration-700 easy-in-out
           ${
             isShowDescription
               ? "z-0 max-h-[1000px] lg:max-h-[845px] opacity-100 pt-10"
-              : "-z-0 max-h-0 opacity-0 pt-0"
+              : "-z-0 max-h-0 opacity-0 pt-0 pointer-events-none"
           }
           `}
         >
