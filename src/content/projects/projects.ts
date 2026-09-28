@@ -190,7 +190,7 @@ export const PROJECTS: Project[] = [
     duration: "Ongoing (launched 2026)",
     team: "Solo engineer",
     techStack:
-      "React Native (Expo), TypeScript, Supabase (Postgres, Auth), RevenueCat, Firebase Analytics, Astro",
+      "React Native (Expo), TypeScript, Neon, RevenueCat, Firebase Analytics, Astro",
     imgSrcArr: [
       "/images/calmisu_app.webp",
       "/images/calmisu_app_2.webp",
@@ -202,7 +202,7 @@ export const PROJECTS: Project[] = [
     problem:
       "Most anxiety apps compete on the same handful of breathing/meditation exercises with no visual hook and no organic growth engine — meaning even a well-built app stays invisible without paid acquisition, which a solo, zero-budget launch can't afford.",
     approach:
-      "Built a React Native (Expo) app on Supabase (Postgres + Auth) with RevenueCat handling subscription monetization and Firebase Analytics tracking funnel events, centered on calligraphy tracing as a visual, tactile alternative to generic breathing timers. Paired it with an Astro landing site and blog engineered for search from the ground up — structured data (Organization/WebSite/MobileApplication/FAQPage JSON-LD), sitemap submission and indexing requests, Core Web Vitals fixes (image compression, font loading, LCP priority), and a content strategy targeting long-tail anxiety-relief search terms. Growth is driven by organic channels only: SEO-optimized blog content and a Reddit warm-up/posting strategy, with in-app review prompts tied to a mood-check survey to build Play Store social proof over time.",
+      "Built a React Native (Expo) app on Neon (Postgres + Auth) with RevenueCat handling subscription monetization and Firebase Analytics tracking funnel events, centered on calligraphy tracing as a visual, tactile alternative to generic breathing timers. Paired it with an Astro landing site and blog engineered for search from the ground up — structured data (Organization/WebSite/MobileApplication/FAQPage JSON-LD), sitemap submission and indexing requests, Core Web Vitals fixes (image compression, font loading, LCP priority), and a content strategy targeting long-tail anxiety-relief search terms. Growth is driven by organic channels only: SEO-optimized blog content and a Reddit warm-up/posting strategy, with in-app review prompts tied to a mood-check survey to build Play Store social proof over time.",
     outcome: [
       {
         val: "4",
@@ -234,7 +234,7 @@ export const PROJECTS: Project[] = [
     ],
     description: [
       `Calmisu (published on Google Play as "Calm Is You") is an anxiety and wellness app that leads with a genuine differentiator — calligraphy tracing as a meditative, tactile alternative to yet another breathing timer — alongside guided breathing, nature soundscapes, and a reflective AI chat space with deliberate safety guardrails. It's free to install, with subscription monetization handled through RevenueCat.`,
-      `As the solo engineer, I own the full stack end to end: the Expo/Supabase app itself, the Astro marketing site and blog, and the growth layer that gets both of them found — technical SEO (structured data, indexing, Core Web Vitals), a zero-budget organic content and Reddit strategy, and Play Store compliance work like correctly scoping the Data Safety declaration for RevenueCat's data flows. The project is in active launch and growth phase: the app and site are live, and the current focus is content depth, social proof, and ASO refinement to convert early technical groundwork into real search visibility.`,
+      `As the solo engineer, I own the full stack end to end: the Expo/Neon app itself, the Astro marketing site and blog, and the growth layer that gets both of them found — technical SEO (structured data, indexing, Core Web Vitals), a zero-budget organic content and Reddit strategy, and Play Store compliance work like correctly scoping the Data Safety declaration for RevenueCat's data flows. The project is in active launch and growth phase: the app and site are live, and the current focus is content depth, social proof, and ASO refinement to convert early technical groundwork into real search visibility.`,
     ],
   },
   // Catoshi
@@ -441,20 +441,24 @@ export const PROJECTS: Project[] = [
       "React, TS, Next.js, Tailwind CSS, useSWR, React-Hook-Form, MongoDB, Openai API, TMDB API, Stripe",
     imgSrcArr: ["/images/reel_reveal.webp", "/images/reel_reveal_mob.webp"],
     summary:
-      "AI-driven movie recommendations with Google auth and personalized matching using OpenAI and TMDB APIs.",
+      "AI-driven movie recommendations via a preference quiz, plus AI-powered similar-movie matching — with Google auth and Stripe payments.",
     problem:
       "Users struggle to find movies they'll actually enjoy. Existing platforms rely on basic genre filtering — there was no AI-driven matching that understands nuanced user preferences.",
     approach:
-      "Built the full stack from scratch — Next.js with Google Authentication, MongoDB for user data, OpenAI API for personalized recommendations, and TMDB API for movie metadata.",
+      "Built the full stack from scratch — a quiz flow where users answer a series of preference questions, with OpenAI turning the answers into personalized movie recommendations. A second AI-powered feature suggests similar movies based on a title the user already likes. Next.js with Google Authentication, MongoDB for user data, and TMDB API for movie metadata round out the stack.",
     outcome: [
       { val: "AI", label: "Powered matching" },
+      { val: "2", label: "AI-driven features (quiz + similar movies)" },
       { val: "Stripe", label: "Payment integration" },
-      { val: "Quiz", label: "Driven AI matching" },
     ],
     build: [
       {
-        title: "AI recommendations",
-        body: "OpenAI API integration for personalized movie recommendations based on user history and stated preferences.",
+        title: "Quiz-driven AI recommendations",
+        body: "Users answer a short preference quiz; OpenAI API turns the answers into a personalized set of movie recommendations.",
+      },
+      {
+        title: "Similar-movies AI matching",
+        body: "A second OpenAI-powered flow suggests movies similar to a title the user selects, independent of the quiz.",
       },
       {
         title: "Authentication",
@@ -467,7 +471,7 @@ export const PROJECTS: Project[] = [
     ],
     description: [
       `As a full-stack developer on this project, I took ownership of both the frontend and backend development, ensuring a seamless and intuitive user experience.`,
-      `I built the frontend from scratch using modern technologies, frameworks and tools like React, Next.js, TypeScript, and Tailwind CSS, adhering to industry best practices for structure and scalability. On the backend, I implemented a secure and efficient system using MongoDB for data management and Google Authentication for user login. Additionally, I integrated the Open AI API to deliver personalized, AI-driven movie recommendations.`,
+      `I built the frontend from scratch using modern technologies, frameworks and tools like React, Next.js, TypeScript, and Tailwind CSS, adhering to industry best practices for structure and scalability. On the backend, I implemented a secure and efficient system using MongoDB for data management and Google Authentication for user login. I integrated the OpenAI API in two places: a preference quiz that turns a user's answers into personalized movie recommendations, and a similar-movies feature that suggests titles related to one the user already likes.`,
     ],
   },
   // Invest

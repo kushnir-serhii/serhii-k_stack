@@ -1,7 +1,7 @@
 export const contacts = [
   {
-    text: "s1983kushnir@gmail.com",
-    url: "mailto:s1983kushnir@gmail.com",
+    text: "serhiy.kushnir.dev@gmail.com",
+    url: "mailto:serhiy.kushnir.dev@gmail.com",
     service: "Email",
   },
   {
