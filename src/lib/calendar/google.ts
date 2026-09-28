@@ -24,6 +24,17 @@ function primaryCalendarId(): string {
   return process.env.GOOGLE_CALENDAR_ID || "primary";
 }
 
+/**
+ * The calendar owner's email, listed as an accepted attendee so the visitor
+ * sees the organizer confirmed. The OAuth scopes can't read it from Google,
+ * so it comes from env (or GOOGLE_CALENDAR_ID when that is an address).
+ */
+function ownerEmail(): string | undefined {
+  if (process.env.BOOKING_OWNER_EMAIL) return process.env.BOOKING_OWNER_EMAIL;
+  const calendarId = primaryCalendarId();
+  return calendarId.includes("@") ? calendarId : undefined;
+}
+
 /** Extra calendars (comma-separated) to also treat as busy, on top of the booking calendar. */
 function busyCalendarIds(): string[] {
   const primary = primaryCalendarId();
@@ -151,12 +162,18 @@ export async function countBotEventsOnDay(from: Date, to: Date): Promise<Record<
 }
 
 export async function createEvent(event: NewEvent): Promise<CreatedEvent> {
+  const owner = ownerEmail();
+  const attendees = [
+    ...(owner ? [{ email: owner, responseStatus: "accepted" }] : []),
+    { email: event.attendeeEmail },
+  ];
+
   const body: Record<string, unknown> = {
-    summary: `${BOOKING_CONFIG.eventTitlePrefix} ${event.summary}`.trim(),
+    summary: event.summary,
     description: event.description,
     start: { dateTime: event.start.toISOString(), timeZone: BOOKING_CONFIG.timezone },
     end: { dateTime: event.end.toISOString(), timeZone: BOOKING_CONFIG.timezone },
-    attendees: [{ email: event.attendeeEmail }],
+    attendees,
     extendedProperties: { private: { source: BOT_SOURCE } },
   };
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, type FormEvent } from "react";
+import { FormField } from "./FormField";
 import type { BookingActionItem } from "./types";
 
 interface DayGroup {
@@ -14,6 +15,13 @@ type Status = "picking" | "submitting" | "success" | "conflict" | "error";
 interface SuccessInfo {
   start: string;
   meetLink?: string;
+}
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+interface FieldErrors {
+  name?: string;
+  email?: string;
 }
 
 function visitorTimezone(): string {
@@ -63,6 +71,7 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
   const [email, setEmail] = useState(item.prefill.email ?? "");
   const [topic, setTopic] = useState(item.prefill.topic ?? "");
   const [website, setWebsite] = useState(""); // honeypot
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
   const timeFmt = useMemo(
     () => new Intl.DateTimeFormat("en-US", { hour: "2-digit", minute: "2-digit", timeZone: timezone }),
@@ -105,6 +114,17 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
   const submit = async (e: FormEvent) => {
     e.preventDefault();
     if (!selectedSlot || status === "submitting") return;
+
+    const errors: FieldErrors = {};
+    if (!name.trim()) errors.name = "Please enter your name.";
+    if (!email.trim()) errors.email = "Please enter your email.";
+    else if (!EMAIL_RE.test(email.trim())) errors.email = "Enter a valid email address.";
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      return;
+    }
+    setFieldErrors({});
 
     setStatus("submitting");
     setErrorMessage(null);
@@ -178,7 +198,7 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
       ) : (
         <>
           {/* Day strip */}
-          <div className="mt-2 flex gap-2 overflow-x-auto pb-1" aria-label="Choose a day">
+          <div className="mt-2 flex gap-2 overflow-x-auto pb-3 pt-1" aria-label="Choose a day">
             {days.map((day, i) => (
               <button
                 key={day.date}
@@ -246,44 +266,38 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
       )}
 
       {selectedSlot && status !== "conflict" && (
-        <form onSubmit={submit} className="mt-3 flex flex-col gap-2 border-t border-grey_500 pt-3">
-          <label className="text-[12px] leading-snug text-grey_300" htmlFor="booking-name">
-            Name
-          </label>
-          <input
+        <form onSubmit={submit} noValidate className="mt-3 flex flex-col gap-2 border-t border-grey_500 pt-3">
+          <FormField
             id="booking-name"
+            label="Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
+            onChange={(e) => {
+              setName(e.target.value);
+              if (fieldErrors.name) setFieldErrors((prev) => ({ ...prev, name: undefined }));
+            }}
+            error={fieldErrors.name}
             maxLength={120}
-            className="h-10 rounded-xl bg-black px-3 text-[14px] text-textLight ring-1 ring-grey_500 placeholder:text-textGrey
-                       focus:outline-none focus:ring-2 focus:ring-accentGreen"
           />
 
-          <label className="text-[12px] leading-snug text-grey_300" htmlFor="booking-email">
-            Email
-          </label>
-          <input
+          <FormField
             id="booking-email"
+            label="Email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (fieldErrors.email) setFieldErrors((prev) => ({ ...prev, email: undefined }));
+            }}
+            error={fieldErrors.email}
             maxLength={120}
-            className="h-10 rounded-xl bg-black px-3 text-[14px] text-textLight ring-1 ring-grey_500 placeholder:text-textGrey
-                       focus:outline-none focus:ring-2 focus:ring-accentGreen"
           />
 
-          <label className="text-[12px] leading-snug text-grey_300" htmlFor="booking-topic">
-            Topic (optional)
-          </label>
-          <input
+          <FormField
             id="booking-topic"
+            label="Topic (optional)"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             maxLength={500}
-            className="h-10 rounded-xl bg-black px-3 text-[14px] text-textLight ring-1 ring-grey_500 placeholder:text-textGrey
-                       focus:outline-none focus:ring-2 focus:ring-accentGreen"
           />
 
           {/* Honeypot — hidden from real visitors, only bots fill it in. */}

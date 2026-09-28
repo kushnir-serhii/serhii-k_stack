@@ -168,9 +168,17 @@ export async function POST(req: Request) {
     const email = payload.email.trim().slice(0, MAX_NAME);
     const topic = payload.topic?.trim().slice(0, MAX_TOPIC) || undefined;
 
+    const description = [
+      `✅ Confirmed — ${BOOKING_CONFIG.ownerName} will join via the Google Meet link in this invite.`,
+      topic ? `Topic: ${topic}` : undefined,
+      "Booked through the chat on Serhii's portfolio. Need to reschedule? Just reply to this invite.",
+    ]
+      .filter(Boolean)
+      .join("\n\n");
+
     const created = await createEvent({
-      summary: `${type.label} with ${name}`,
-      description: topic,
+      summary: `${type.label}: ${BOOKING_CONFIG.ownerName} × ${name}`,
+      description,
       start,
       end,
       attendeeEmail: email,
