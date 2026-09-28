@@ -8,9 +8,27 @@ import { BookingCard } from "./BookingCard";
 
 function BotIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
-      <rect x="3" y="7" width="18" height="13" rx="4" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M12 3v4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect
+        x="3"
+        y="7"
+        width="18"
+        height="13"
+        rx="4"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M12 3v4"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
       <circle cx="9" cy="13" r="1.3" fill="currentColor" />
       <circle cx="15" cy="13" r="1.3" fill="currentColor" />
     </svg>
@@ -101,8 +119,10 @@ export function ChatWidget() {
         return;
       }
       const atTop = list.scrollTop <= 0;
-      const atBottom = list.scrollTop + list.clientHeight >= list.scrollHeight - 1;
-      if ((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom)) e.preventDefault();
+      const atBottom =
+        list.scrollTop + list.clientHeight >= list.scrollHeight - 1;
+      if ((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom))
+        e.preventDefault();
     };
     panel.addEventListener("wheel", onWheel, { passive: false });
     return () => panel.removeEventListener("wheel", onWheel);
@@ -205,13 +225,15 @@ export function ChatWidget() {
                            bg-black_900 pl-2.5 pr-3.5 text-[13px] font-medium text-textLight
                            transition-colors hover:border-accentGreen hover:text-accentGreen
                            focus:outline-none focus-visible:ring-2 focus-visible:ring-accentGreen
-                           disabled:cursor-not-allowed disabled:opacity-40
+                            disabled:opacity-40
                            disabled:hover:border-grey_500 disabled:hover:text-textLight"
               >
                 <svg
                   viewBox="0 0 24 24"
                   className={`h-4 w-4 transition-transform duration-300 ${
-                    hasConversation && !isStreaming ? "group-hover:-rotate-180" : ""
+                    hasConversation && !isStreaming
+                      ? "group-hover:-rotate-180"
+                      : ""
                   }`}
                   aria-hidden="true"
                 >
@@ -402,7 +424,11 @@ export function ChatWidget() {
                                    disabled:opacity-40"
                       >
                         <span className="text-inherit">{q}</span>
-                        <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-4 w-4 shrink-0"
+                          aria-hidden="true"
+                        >
                           <path
                             d="M5 12h14M13 6l6 6-6 6"
                             stroke="currentColor"
@@ -419,7 +445,11 @@ export function ChatWidget() {
                   <button
                     type="button"
                     onClick={() => setMenuOpen((v) => !v)}
-                    aria-label={menuOpen ? "Hide suggested questions" : "Show suggested questions"}
+                    aria-label={
+                      menuOpen
+                        ? "Hide suggested questions"
+                        : "Show suggested questions"
+                    }
                     aria-haspopup="menu"
                     aria-expanded={menuOpen}
                     aria-controls="chat-suggestions"
@@ -436,7 +466,9 @@ export function ChatWidget() {
                       <svg
                         viewBox="0 0 24 24"
                         className={`absolute inset-0 h-5 w-5 transition-all duration-200 ${
-                          menuOpen ? "rotate-90 scale-50 opacity-0" : "rotate-0 scale-100 opacity-100"
+                          menuOpen
+                            ? "rotate-90 scale-50 opacity-0"
+                            : "rotate-0 scale-100 opacity-100"
                         }`}
                         aria-hidden="true"
                       >
@@ -453,7 +485,9 @@ export function ChatWidget() {
                       <svg
                         viewBox="0 0 24 24"
                         className={`absolute inset-0 h-5 w-5 transition-all duration-200 ${
-                          menuOpen ? "rotate-0 scale-100 opacity-100" : "-rotate-90 scale-50 opacity-0"
+                          menuOpen
+                            ? "rotate-0 scale-100 opacity-100"
+                            : "-rotate-90 scale-50 opacity-0"
                         }`}
                         aria-hidden="true"
                       >
