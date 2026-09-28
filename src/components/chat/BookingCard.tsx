@@ -256,8 +256,8 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
             onChange={(e) => setName(e.target.value)}
             required
             maxLength={120}
-            className="h-10 rounded-xl bg-black px-3 text-[14px] text-textLight placeholder:text-textGrey
-                       focus:outline-none focus:ring-1 focus:ring-accentGreen"
+            className="h-10 rounded-xl bg-black px-3 text-[14px] text-textLight ring-1 ring-grey_500 placeholder:text-textGrey
+                       focus:outline-none focus:ring-2 focus:ring-accentGreen"
           />
 
           <label className="text-[12px] leading-snug text-grey_300" htmlFor="booking-email">
@@ -270,8 +270,8 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
             onChange={(e) => setEmail(e.target.value)}
             required
             maxLength={120}
-            className="h-10 rounded-xl bg-black px-3 text-[14px] text-textLight placeholder:text-textGrey
-                       focus:outline-none focus:ring-1 focus:ring-accentGreen"
+            className="h-10 rounded-xl bg-black px-3 text-[14px] text-textLight ring-1 ring-grey_500 placeholder:text-textGrey
+                       focus:outline-none focus:ring-2 focus:ring-accentGreen"
           />
 
           <label className="text-[12px] leading-snug text-grey_300" htmlFor="booking-topic">
@@ -282,8 +282,8 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             maxLength={500}
-            className="h-10 rounded-xl bg-black px-3 text-[14px] text-textLight placeholder:text-textGrey
-                       focus:outline-none focus:ring-1 focus:ring-accentGreen"
+            className="h-10 rounded-xl bg-black px-3 text-[14px] text-textLight ring-1 ring-grey_500 placeholder:text-textGrey
+                       focus:outline-none focus:ring-2 focus:ring-accentGreen"
           />
 
           {/* Honeypot — hidden from real visitors, only bots fill it in. */}
