@@ -29,7 +29,7 @@ export interface BotConfig {
 export const BOT_CONFIG: BotConfig = {
   name: "Sonia",
   greeting:
-    "Hi! I'm Kush, Serhii's AI assistant. Ask me about his projects, stack or availability — or leave your contact and he'll get back to you.",
+    "Hi! I'm Sonia, Serhii's AI assistant. Ask me about his projects, stack or availability — or leave your contact and he'll get back to you.",
   quickReplies: [
     "What has he built recently?",
     "Does he know React Native?",

@@ -33,8 +33,8 @@ export interface BookingConfig {
   horizonDays: number;
   /** Max bot-created bookings allowed on a single calendar day. */
   maxBookingsPerDay: number;
-  /** Prefixed onto every event title the bot creates, e.g. "[Portfolio] Intro call". */
-  eventTitlePrefix: string;
+  /** Owner name shown in event titles, e.g. "Intro call: Serhii Kushnir × Julia". */
+  ownerName: string;
   /** Attach a Google Meet link to created events. */
   createMeetLink: boolean;
 }
@@ -53,7 +53,7 @@ export const BOOKING_CONFIG: BookingConfig = {
   minNoticeHours: 12,
   horizonDays: 14,
   maxBookingsPerDay: 3,
-  eventTitlePrefix: "[Portfolio]",
+  ownerName: "Serhii Kushnir",
   createMeetLink: true,
 };
 

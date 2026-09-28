@@ -59,6 +59,16 @@ export function useChatBot() {
       const controller = new AbortController();
       abortRef.current = controller;
 
+      // Booking cards render below the bot's reply, so hold them back
+      // until the whole response has finished streaming in.
+      let pendingBooking: ChatItem | null = null;
+      const flushPendingBooking = () => {
+        if (!pendingBooking) return;
+        const booking = pendingBooking;
+        pendingBooking = null;
+        setItems((prev) => [...prev, booking]);
+      };
+
       try {
         const res = await fetch("/api/chat", {
           method: "POST",
@@ -108,18 +118,17 @@ export function useChatBot() {
               { id: nextId(), kind: "lead", ok: event.ok },
             ]);
           } else if (event.type === "action" && event.action === "booking_slots") {
-            setItems((prev) => [
-              ...prev,
-              {
-                id: nextId(),
-                kind: "booking",
-                meetingType: event.meetingType,
-                durationMinutes: event.durationMinutes,
-                timezone: event.timezone,
-                days: event.days,
-                prefill: event.prefill,
-              },
-            ]);
+            pendingBooking = {
+              id: nextId(),
+              kind: "booking",
+              meetingType: event.meetingType,
+              durationMinutes: event.durationMinutes,
+              timezone: event.timezone,
+              days: event.days,
+              prefill: event.prefill,
+            };
+          } else if (event.type === "done") {
+            flushPendingBooking();
           }
         };
 
@@ -145,6 +154,8 @@ export function useChatBot() {
           setError((err as Error).message || "Network error.");
         }
       } finally {
+        // In case the stream ended (error/abort) before a "done" event.
+        flushPendingBooking();
         // Drop the placeholder if nothing ever arrived.
         setItems((prev) =>
           prev.filter(
