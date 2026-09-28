@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Space_Grotesk } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -64,6 +65,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <ChatWidget />
       </body>
     </html>
   );
