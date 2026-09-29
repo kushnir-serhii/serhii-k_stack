@@ -16,10 +16,10 @@ export default function AllProjectsPage() {
         <ProjectBreadcrumb title="All Projects" />
 
         <div className="border-b border-grey_300 pb-12">
-          <h1 className="mb-4 text-[clamp(32px,5vw,72px)] font-medium leading-[1.02] tracking-[-0.03em] text-textDark">
+          <h1 className="mb-4 text-page-title text-black_900">
             All Projects
           </h1>
-          <p className="mt-4 max-w-[640px] text-[18px] leading-[1.55] text-textGrey">
+          <p className="mt-4 max-w-[640px] text-lg leading-[1.55] text-grey_400">
             {PROJECTS.length} shipped projects across fintech, Web3, and SaaS — pick a
             case study below.
           </p>

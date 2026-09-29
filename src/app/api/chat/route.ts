@@ -12,7 +12,9 @@ import { countBotEventsOnDay, getBusyIntervals, isCalendarConfigured } from "@/l
 export const runtime = "nodejs";
 export const maxDuration = 30;
 
-const MAX_MESSAGES = 30;
+// Must comfortably cover BOT_CONFIG.maxMessagesPerSession user turns, since
+// history includes both the user and assistant side of every prior turn.
+const MAX_MESSAGES = 60;
 const MAX_CHARS = 1000;
 const MAX_TOOL_ROUNDS = 3;
 

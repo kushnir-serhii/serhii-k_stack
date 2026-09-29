@@ -38,7 +38,7 @@ export const ClockContactsSection: React.FC = () => {
                       rel: "noopener noreferrer",
                     })}
                     aria-label={`Link to contact ${contact.service}`}
-                    className="group flex flex-col items-start font-bold gap-2 cursor-pointer transition-all duration-300 hover:text-grey_500"
+                    className="group flex flex-col items-start font-bold gap-2 cursor-pointer transition-all duration-300 hover:text-grey_500 rounded-sm focus-ring"
                   >
                     {contact.text}
                     <Icon
@@ -56,7 +56,7 @@ export const ClockContactsSection: React.FC = () => {
           <button
             type="button"
             onClick={() => openChat("Book a call with Serhii")}
-            className="buttonOrLink downloadLinkBtn flex px-6 text-textDark self-start focus:outline-none focus-visible:ring-2 focus-visible:ring-green_600 focus-visible:ring-offset-2"
+            className="buttonOrLink downloadLinkBtn flex px-6 text-black_900 self-start focus-ring"
           >
             Book a free call
           </button>

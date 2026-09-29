@@ -69,6 +69,30 @@ export function useChatBot() {
         setItems((prev) => [...prev, booking]);
       };
 
+      // Chunks can arrive many times per second; batch them into at most
+      // one state update per animation frame instead of one per chunk.
+      let pendingText = "";
+      let flushHandle: number | null = null;
+      const flushPendingText = () => {
+        flushHandle = null;
+        if (!pendingText) return;
+        const chunk = pendingText;
+        pendingText = "";
+        setItems((prev) =>
+          prev.map((i) =>
+            i.id === replyId && i.kind === "message"
+              ? { ...i, content: i.content + chunk }
+              : i
+          )
+        );
+      };
+      const appendText = (value: string) => {
+        pendingText += value;
+        if (flushHandle == null) {
+          flushHandle = requestAnimationFrame(flushPendingText);
+        }
+      };
+
       try {
         const res = await fetch("/api/chat", {
           method: "POST",
@@ -85,15 +109,6 @@ export function useChatBot() {
         const reader = res.body.getReader();
         const decoder = new TextDecoder();
         let buffer = "";
-
-        const appendText = (value: string) =>
-          setItems((prev) =>
-            prev.map((i) =>
-              i.id === replyId && i.kind === "message"
-                ? { ...i, content: i.content + value }
-                : i
-            )
-          );
 
         const handle = (event: StreamEvent) => {
           if (event.type === "text") {
@@ -154,6 +169,10 @@ export function useChatBot() {
           setError((err as Error).message || "Network error.");
         }
       } finally {
+        // Flush any text batched for the next animation frame so nothing
+        // arriving right as the stream ends gets dropped by the check below.
+        if (flushHandle != null) cancelAnimationFrame(flushHandle);
+        flushPendingText();
         // In case the stream ended (error/abort) before a "done" event.
         flushPendingBooking();
         // Drop the placeholder if nothing ever arrived.

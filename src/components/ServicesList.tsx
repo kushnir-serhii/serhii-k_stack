@@ -7,7 +7,7 @@ import { Icon } from "./ui/Icon";
 import { animationSection, animationTitleSection } from "../variables";
 
 const ALL_LINK =
-  "inline-flex h-[52px] items-center justify-center rounded-full border border-textDark px-6 font-medium text-textDark transition-colors hover:bg-textDark hover:text-textLight focus:outline-none focus-visible:ring-2 focus-visible:ring-green_600 focus-visible:ring-offset-2";
+  "inline-flex h-[52px] items-center justify-center rounded-full border border-black_900 px-6 font-medium text-black_900 transition-colors hover:bg-black_900 hover:text-white focus-ring";
 
 export const ServicesList: React.FC = () => {
   return (
@@ -23,22 +23,22 @@ export const ServicesList: React.FC = () => {
           <motion.li key={item.slug} {...animationSection} className="h-full">
             <Link
               href={`/services#${item.slug}`}
-              className="group relative flex h-full flex-col gap-6 rounded-[20px] bg-textLight p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-green_600"
+              className="group relative flex h-full flex-col gap-6 rounded-[20px] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-ring motion-reduce:transition-none motion-reduce:hover:transform-none"
             >
               <div className="flex items-center justify-between">
-                <div className="flex justify-center items-center size-10 bg-accentGreen p-1 rounded-lg">
+                <div className="flex justify-center items-center size-10 bg-green_500 p-1 rounded-lg">
                   <Icon
                     id={item.iconId}
                     width={24}
                     height={24}
-                    className="text-textDark"
+                    className="text-black_900"
                   />
                 </div>
                 <Icon
                   id="icon-arrow-up-right"
                   width={16}
                   height={16}
-                  className="text-textDark opacity-30 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
+                  className="text-black_900 opacity-30 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
                 />
               </div>
               <h4>{item.service}</h4>

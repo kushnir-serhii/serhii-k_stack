@@ -4,7 +4,7 @@ import type { Project } from "@/content";
 import { Icon } from "@/components/ui/Icon";
 
 const CHIP =
-  "inline-flex items-center gap-2 px-3 py-1 border border-grey_300 rounded-full font-mono text-[10px] tracking-[0.06em] uppercase text-textGrey";
+  "inline-flex items-center gap-2 px-3 py-1 border border-grey_300 rounded-full font-mono text-label uppercase text-grey_400";
 
 interface ProjectCardProps {
   project: Project;
@@ -23,7 +23,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     <Link
       href={`/projects/${slug}`}
       aria-label={`Case study: ${title}`}
-      className="group flex flex-col gap-4"
+      className="group flex flex-col gap-4 focus-ring rounded-2xl"
     >
       <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-grey_300 bg-bg">
         <Image
@@ -31,9 +31,9 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           alt={`${title} preview`}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-[1.04]"
+          className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
-        <span className="absolute top-3 left-3 rounded-full bg-black_900/70 px-2 py-1 font-mono text-[11px] text-textLight backdrop-blur-sm">
+        <span className="absolute top-3 left-3 rounded-full bg-black_900/70 px-2 py-1 font-mono text-label text-white backdrop-blur-sm">
           {String(index + 1).padStart(2, "0")}
         </span>
       </div>
@@ -43,7 +43,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           <span
             className={`${CHIP}${
               status === "live"
-                ? " before:content-[''] before:block before:w-1.5 before:h-1.5 before:rounded-full before:bg-accentGreen before:shrink-0"
+                ? " before:content-[''] before:block before:w-1.5 before:h-1.5 before:rounded-full before:bg-green_500 before:shrink-0"
                 : ""
             }`}
           >
@@ -52,30 +52,30 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           <span className={CHIP}>{year}</span>
         </div>
 
-        <h4 className="text-textDark leading-snug">{subtitle ?? title}</h4>
-        <p className="text-sm text-textGrey">{role}</p>
+        <h4 className="text-black_900 leading-snug">{subtitle ?? title}</h4>
+        <p className="text-sm text-grey_400">{role}</p>
 
         {summary && (
-          <p className="line-clamp-2 text-sm leading-[1.5] text-textGrey">{summary}</p>
+          <p className="line-clamp-2 text-sm leading-[1.5] text-grey_400">{summary}</p>
         )}
 
         <div className="mt-1 flex flex-wrap gap-1.5">
           {visibleTags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-grey_300 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.04em] text-textGrey"
+              className="rounded-full border border-grey_300 px-2 py-1 font-mono text-label uppercase text-grey_400"
             >
               {tag}
             </span>
           ))}
           {extraTagsCount > 0 && (
-            <span className="px-2 py-1 font-mono text-[10px] uppercase tracking-[0.04em] text-textGrey">
+            <span className="px-2 py-1 font-mono text-label uppercase text-grey_400">
               +{extraTagsCount}
             </span>
           )}
         </div>
 
-        <span className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-accentGreen">
+        <span className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-black_900 underline decoration-green_500 decoration-2 underline-offset-4">
           Case study
           <Icon
             id="icon-arrow-up-right"

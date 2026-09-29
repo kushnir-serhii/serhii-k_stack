@@ -20,10 +20,10 @@ export const ProjectsList: React.FC = () => {
     <motion.section
       {...animationTitleSection}
       id="projects"
-      className="flex justify-center items-center bg-bgProject py-10 md:py-24 w-full rounded-[20px]"
+      className="flex justify-center items-center bg-black_900 py-10 md:py-24 w-full rounded-[20px]"
     >
       <div className="container flex justify-start items-start flex-col ">
-        <h2 className="text-textLight uppercase">Selected Projects</h2>
+        <h2 className="text-white uppercase">Selected Projects</h2>
 
         <ul className="flex flex-col w-full">
           {featuredProjects.map((project, index) => {
@@ -47,7 +47,7 @@ export const ProjectsList: React.FC = () => {
             <Link
               href="/projects"
               aria-label="View all projects"
-              className="buttonOrLink inline-flex items-center gap-2 border border-grey_500 px-8 text-textLight transition-colors hover:bg-textLight/10"
+              className="buttonOrLink inline-flex items-center gap-2 border border-grey_500 px-8 text-white transition-colors hover:bg-white/10 focus-ring-dark"
             >
               View all {PROJECTS.length} projects
               <Icon id="icon-arrow-up-right" width={12} height={12} />
