@@ -11,8 +11,6 @@ export const MainLogo: React.FC<MainLogoProps> = ({
   classNameLink,
   classNameShortLogo,
 }) => {
-  console.log("children", "CHECK HOMANY TIMES");
-
   return (
     <Link
       href="/"
@@ -23,11 +21,11 @@ export const MainLogo: React.FC<MainLogoProps> = ({
         <span
           className={`${
             classNameShortLogo ? classNameShortLogo : "hidden"
-          } flex text-lg text-textDark`}
+          } flex text-lg text-black_900`}
         >
           &lt;SK&gt;
         </span>
-        <span aria-labelledby="main logo" className={` ${classNameLogo}`}>
+        <span className={` ${classNameLogo}`}>
           {"<SerhiiKushnir />"}
         </span>
       </span>

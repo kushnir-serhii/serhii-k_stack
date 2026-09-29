@@ -6,14 +6,13 @@ export const HeaderNavMenu: React.FC = () => {
   return (
     <nav
       aria-label="Nav menu"
-      className="hidden md:flex justify-between items-center text-textDark gap-5 lg:gap-10"
+      className="hidden md:flex justify-between items-center text-black_900 gap-5 lg:gap-10"
     >
       {navLinks.map(({ label, href, external }) => (
         <NavItem key={label}>
           <Link
-            aria-label={`Link to ${label}`}
             href={href}
-            className="p-2"
+            className="p-2 rounded-md focus-ring"
             {...(external && { target: "_blank", rel: "noopener noreferrer" })}
           >
             {label}

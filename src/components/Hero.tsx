@@ -5,19 +5,21 @@ import dynamic from "next/dynamic";
 import { motion } from "motion/react";
 import { LinkBtn } from "./ui/LinkBtn";
 import { animationHeroComponent, animationHeroTitle } from "../variables";
+import { githubUrl, cvPath } from "../constants/navLinks";
 
 const GitAnime = dynamic(
   () => import("./GitAnime").then((module) => ({ default: module.GitAnime })),
   { ssr: false }
 );
 export const Hero: React.FC = () => {
-  
+
   return (
-    <main className="flex flex-col gap-[54px] w-full ">
+    <section aria-labelledby="hero-title" className="flex flex-col gap-[54px] w-full ">
       <div className="container flex flex-col gap-14">
         <motion.h1
+          id="hero-title"
           {...animationHeroTitle}
-          className="responsive-heading text-[104px] font-bold text-left leading-[114px] uppercase text-[black]"
+          className="responsive-heading text-display font-bold text-left uppercase text-black"
         >
           Full stack Developer serhii kushnir
         </motion.h1>
@@ -27,19 +29,19 @@ export const Hero: React.FC = () => {
             {...animationHeroComponent}
             className="flex flex-col gap-8 lg:max-w-[540px] lg:w-1/2 h-full"
           >
-            <p className="text-lg font-bold leading-5 text-textDark">
+            <p className="text-lg font-bold leading-5 text-black_900">
               &lt;React TS Next.js Node.js Tailwind CSS-in-JS&gt;
             </p>
-            <p className="text-textDark">
+            <p className="text-black_900">
               A full-stack developer focused on creating scalable, efficient
               solutions. With an engineering background and a structured
               problem-solving approach, I contribute effectively to both team
               and individual projects.
             </p>
             <LinkBtn
-              href="cv/serhii_kushnir_fullstack_developer.pdf"
+              href={cvPath}
               ariaLabel="Download CV"
-              clasName="downloadLinkBtn flex"
+              className="downloadLinkBtn flex focus-ring"
             >
               Open CV
             </LinkBtn>
@@ -52,11 +54,11 @@ export const Hero: React.FC = () => {
           >
             {/* Animation start */}
             <Link
-              href={"https://github.com/Sergiy5"}
+              href={githubUrl}
               rel="noopener noreferrer"
               target="_blank"
-              aria-label="Link to GitHub"
-              className="flex items-end w-full lg:max-w-[540px] "
+              aria-label="Link to GitHub (opens in new tab)"
+              className="flex items-end w-full lg:max-w-[540px] rounded-2xl focus-ring"
             >
               <GitAnime />
             </Link>
@@ -64,6 +66,6 @@ export const Hero: React.FC = () => {
           {/* Animation end */}
         </div>
       </div>
-    </main>
+    </section>
   );
 };

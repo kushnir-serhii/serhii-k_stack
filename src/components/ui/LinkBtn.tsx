@@ -2,19 +2,19 @@ import Link from "next/link";
 
 interface LinkBtnProps {
   children?: React.ReactNode;
-  clasName?: string;
+  className?: string;
   href: string;
   ariaLabel: string;
   download?: boolean;
 }
 export const LinkBtn: React.FC<LinkBtnProps> = ({
   children,
-  clasName,
+  className,
   href,
   ariaLabel,
   download,
 }) => {
-  
+
   return (
     <Link
       href={href}
@@ -23,7 +23,7 @@ export const LinkBtn: React.FC<LinkBtnProps> = ({
       download={download}
       rel="noopener noreferrer"
       aria-label={ariaLabel}
-      className={`buttonOrLink ${clasName}`}
+      className={`buttonOrLink ${className}`}
     >
       {children}
     </Link>

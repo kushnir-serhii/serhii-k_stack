@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 const CHIP =
-  "inline-flex items-center rounded-full border border-grey_300 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.06em] text-textGrey transition-colors hover:border-textDark hover:text-textDark focus:outline-none focus-visible:ring-2 focus-visible:ring-green_600";
+  "inline-flex items-center rounded-full border border-grey_300 px-3 py-1.5 font-mono text-label uppercase text-grey_400 transition-colors hover:border-black_900 hover:text-black_900 focus-ring";
 
 export default function ServicesPage() {
   return (
@@ -29,10 +29,10 @@ export default function ServicesPage() {
         />
 
         <div className="border-b border-grey_300 pb-12">
-          <h1 className="mb-4 text-[clamp(32px,5vw,72px)] font-medium leading-[1.02] tracking-[-0.03em] text-textDark">
+          <h1 className="mb-4 text-page-title text-black_900">
             Services
           </h1>
-          <p className="mt-4 max-w-[640px] text-[18px] leading-[1.55] text-textGrey">
+          <p className="mt-4 max-w-[640px] text-lg leading-[1.55] text-grey_400">
             I help businesses and founders launch websites, mobile apps and AI
             tools — from idea to release. Working solo or together with an
             experienced designer.
@@ -75,18 +75,21 @@ export default function ServicesPage() {
         <section aria-labelledby="process-title" className="py-16">
           <h2
             id="process-title"
-            className="mb-10 !text-[clamp(28px,4vw,48px)] font-medium tracking-[-0.02em] text-textDark"
+            className="mb-10 text-section-title text-black_900"
           >
             How I work
           </h2>
           <ol className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {workProcess.map((w) => (
               <li key={w.step} className="flex flex-col gap-3 border-t border-grey_300 pt-5">
-                <span className="font-mono text-[40px] leading-none text-green_600">
-                  {w.step}
+                <span className="flex items-center gap-2">
+                  <span aria-hidden="true" className="size-1.5 rounded-full bg-green_500" />
+                  <span className="font-mono text-4xl leading-none text-black_900">
+                    {w.step}
+                  </span>
                 </span>
-                <h3 className="text-lg font-bold text-textDark">{w.title}</h3>
-                <p className="text-textGrey">{w.text}</p>
+                <h3 className="text-lg font-bold text-black_900">{w.title}</h3>
+                <p className="text-grey_400">{w.text}</p>
               </li>
             ))}
           </ol>
@@ -95,7 +98,7 @@ export default function ServicesPage() {
         <section aria-labelledby="models-title" className="pb-16">
           <h2
             id="models-title"
-            className="mb-10 !text-[clamp(28px,4vw,48px)] font-medium tracking-[-0.02em] text-textDark"
+            className="mb-10 text-section-title text-black_900"
           >
             Ways to work together
           </h2>
@@ -103,10 +106,10 @@ export default function ServicesPage() {
             {engagementModels.map((m) => (
               <li
                 key={m.title}
-                className="flex flex-col gap-4 rounded-[20px] bg-textLight p-6"
+                className="flex flex-col gap-4 rounded-[20px] bg-white p-6"
               >
-                <h3 className="text-lg font-bold text-textDark">{m.title}</h3>
-                <p className="text-textGrey">{m.text}</p>
+                <h3 className="text-lg font-bold text-black_900">{m.title}</h3>
+                <p className="text-grey_400">{m.text}</p>
               </li>
             ))}
           </ul>
@@ -115,7 +118,7 @@ export default function ServicesPage() {
         <section aria-labelledby="faq-title" className="pb-16">
           <h2
             id="faq-title"
-            className="mb-10 !text-[clamp(28px,4vw,48px)] font-medium tracking-[-0.02em] text-textDark"
+            className="mb-10 text-section-title text-black_900"
           >
             FAQ
           </h2>
@@ -125,14 +128,14 @@ export default function ServicesPage() {
                 key={f.q}
                 className="group border-b border-grey_300 [&_summary::-webkit-details-marker]:hidden"
               >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-medium text-textDark focus:outline-none focus-visible:ring-2 focus-visible:ring-green_600">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-medium text-black_900 focus-ring">
                   {f.q}
                   <span
                     aria-hidden="true"
-                    className="relative size-5 shrink-0 before:absolute before:left-0 before:top-1/2 before:h-0.5 before:w-full before:-translate-y-1/2 before:bg-textDark before:content-[''] after:absolute after:left-1/2 after:top-0 after:h-full after:w-0.5 after:-translate-x-1/2 after:bg-textDark after:transition-transform after:duration-200 after:content-[''] group-open:after:scale-y-0"
+                    className="relative size-5 shrink-0 before:absolute before:left-0 before:top-1/2 before:h-0.5 before:w-full before:-translate-y-1/2 before:bg-black_900 before:content-[''] after:absolute after:left-1/2 after:top-0 after:h-full after:w-0.5 after:-translate-x-1/2 after:bg-black_900 after:transition-transform after:duration-200 after:content-[''] group-open:after:scale-y-0"
                   />
                 </summary>
-                <p className="max-w-[680px] pb-6 text-textGrey">{f.a}</p>
+                <p className="max-w-[680px] pb-6 text-grey_400">{f.a}</p>
               </details>
             ))}
           </div>

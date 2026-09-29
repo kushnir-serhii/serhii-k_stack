@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-29T08:54:44Z",
+  "title": "Design System: Serhii Kushnir — Full Stack Dev Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "signal-lime": {
+        "role": "primary",
+        "displayName": "Signal Lime",
+        "canonical": "#B8FF5B",
+        "tonalRamp": ["#1F2E0C", "#324B14", "#4A6E1C", "#6C9E28", "#8FC936", "#B8FF5B", "#CCFF85", "#E6FFC2"]
+      },
+      "signal-lime-deep": {
+        "role": "primary-hover",
+        "displayName": "Signal Lime Deep",
+        "canonical": "#9BEF2D",
+        "tonalRamp": ["#192607", "#2A3D0E", "#3F5A15", "#5C821E", "#7BAC27", "#9BEF2D", "#B4F45C", "#D3F99B"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#F9F9F9",
+        "tonalRamp": ["#1A1A1A", "#333333", "#4D4D4D", "#7A7A7A", "#ABABAB", "#D6D6D6", "#EDEDED", "#F9F9F9"]
+      },
+      "void": {
+        "role": "neutral",
+        "displayName": "Void",
+        "canonical": "#000000",
+        "tonalRamp": ["#000000", "#0D0D0D", "#1A1A1A", "#292929", "#404040", "#595959", "#737373", "#8C8C8C"]
+      },
+      "console": {
+        "role": "neutral",
+        "displayName": "Console",
+        "canonical": "#171717",
+        "tonalRamp": ["#050505", "#0D0D0D", "#171717", "#242424", "#363636", "#4D4D4D", "#6B6B6B", "#8F8F8F"]
+      },
+      "steel-500": {
+        "role": "neutral",
+        "displayName": "Steel 500",
+        "canonical": "#454545",
+        "tonalRamp": ["#141414", "#212121", "#2E2E2E", "#3A3A3A", "#454545", "#5C5C5C", "#787878", "#9A9A9A"]
+      },
+      "steel-400": {
+        "role": "neutral",
+        "displayName": "Steel 400",
+        "canonical": "#6E6E6E",
+        "tonalRamp": ["#1E1E1E", "#333333", "#484848", "#5B5B5B", "#6E6E6E", "#8A8A8A", "#A8A8A8", "#C6C6C6"]
+      },
+      "steel-300": {
+        "role": "neutral",
+        "displayName": "Steel 300",
+        "canonical": "#D1D1D1",
+        "tonalRamp": ["#333333", "#4D4D4D", "#696969", "#878787", "#A6A6A6", "#C4C4C4", "#D1D1D1", "#EAEAEA"]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#FFFFFF",
+        "tonalRamp": ["#CCCCCC", "#D9D9D9", "#E6E6E6", "#EFEFEF", "#F5F5F5", "#FAFAFA", "#FDFDFD", "#FFFFFF"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero name and footer wordmark, always uppercase." },
+      "headline": { "displayName": "Headline", "purpose": "Default h2 — section titles like Services, Let's connect." },
+      "title": { "displayName": "Title", "purpose": "h3 — project titles inside the dark showcase." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy across the site." },
+      "label": { "displayName": "Label", "purpose": "Breadcrumbs, index numbers, tech-stack chips, monospace UI labels." },
+      "signature": { "displayName": "Signature (Pixel LCD)", "purpose": "Reserved for the digital clock digits and the chat assistant's name only — never body content." }
+    },
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Filled pill CTA — the site's default action (Open CV, Book a free call).",
+      "html": "<button class=\"ds-btn-primary\">Book a free call</button>",
+      "css": ".ds-btn-primary { background: #B8FF5B; color: #171717; border: none; border-radius: 9999px; min-width: 144px; height: 52px; padding: 0 24px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; line-height: 20px; cursor: pointer; transition: background 0.2s, transform 0.2s; } .ds-btn-primary:hover { background: #9BEF2D; transform: scale(1.03); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px #B8FF5B, 0 0 0 4px #171717; }"
+    },
+    {
+      "name": "Secondary Button (dark)",
+      "kind": "button",
+      "refersTo": "button-secondary-dark",
+      "description": "Outlined pill button used on console/void surfaces (e.g. 'Ask my AI assistant').",
+      "html": "<button class=\"ds-btn-secondary-dark\">Ask my AI assistant</button>",
+      "css": ".ds-btn-secondary-dark { background: transparent; color: #FFFFFF; border: 1px solid #454545; border-radius: 9999px; height: 52px; padding: 0 24px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; cursor: pointer; transition: border-color 0.2s, color 0.2s; } .ds-btn-secondary-dark:hover { border-color: #B8FF5B; color: #B8FF5B; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card-service",
+      "description": "White rounded card with an icon chip and arrow affordance; the one place a hover shadow appears.",
+      "html": "<a class=\"ds-card-service\" href=\"#\"><div class=\"ds-card-service__row\"><span class=\"ds-card-service__icon\">&#9679;</span><span class=\"ds-card-service__arrow\">&#8599;</span></div><h4 class=\"ds-card-service__title\">Websites &amp; Web Apps</h4><p class=\"ds-card-service__desc\">Fast, accessible, production-ready builds.</p></a>",
+      "css": ".ds-card-service { display: flex; flex-direction: column; gap: 24px; height: 100%; border-radius: 20px; background: #FFFFFF; padding: 24px; text-decoration: none; transition: transform 0.3s, box-shadow 0.3s; } .ds-card-service:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); } .ds-card-service__row { display: flex; align-items: center; justify-content: space-between; } .ds-card-service__icon { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 8px; background: #B8FF5B; color: #171717; } .ds-card-service__arrow { color: #171717; opacity: 0.3; transition: opacity 0.3s, transform 0.3s; } .ds-card-service:hover .ds-card-service__arrow { opacity: 1; transform: translate(2px, -2px); } .ds-card-service__title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: #171717; margin: 0; } .ds-card-service__desc { font-family: 'Space Grotesk', sans-serif; font-size: 16px; color: #171717; margin: 0; }"
+    },
+    {
+      "name": "Chat Bubble (assistant)",
+      "kind": "custom",
+      "refersTo": "chat-bubble-assistant",
+      "description": "Console-toned message bubble for the AI assistant's replies, squared toward the sender.",
+      "html": "<div class=\"ds-bubble-assistant\">Happy to help — want me to open a project or book a call?</div>",
+      "css": ".ds-bubble-assistant { display: inline-block; max-width: 85%; background: #171717; color: #D1D1D1; border-radius: 16px; border-bottom-left-radius: 6px; box-shadow: inset 0 0 0 1px #454545; padding: 10px 16px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; line-height: 1.5; }"
+    },
+    {
+      "name": "Chat Bubble (visitor)",
+      "kind": "custom",
+      "refersTo": "chat-bubble-user",
+      "description": "Signal-lime message bubble for the visitor's own messages, squared toward the sender.",
+      "html": "<div class=\"ds-bubble-user\">Do you build mobile apps too?</div>",
+      "css": ".ds-bubble-user { display: inline-block; max-width: 85%; background: #B8FF5B; color: #000000; border-radius: 16px; border-bottom-right-radius: 6px; padding: 10px 16px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; line-height: 1.5; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Void-background text input used in the chat composer and booking form.",
+      "html": "<input class=\"ds-input\" placeholder=\"Ask about a project…\" />",
+      "css": ".ds-input { height: 44px; width: 100%; border-radius: 9999px; background: #000000; color: #FFFFFF; border: none; box-shadow: inset 0 0 0 1px #454545; padding: 0 16px; font-family: 'Space Grotesk', sans-serif; font-size: 16px; } .ds-input::placeholder { color: #6E6E6E; } .ds-input:focus { outline: none; box-shadow: inset 0 0 0 2px #B8FF5B; }"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Header/footer nav item — plain text weight, no underline, lime focus ring.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\">Projects</a>",
+      "css": ".ds-nav-link { font-family: 'Space Grotesk', sans-serif; font-weight: 400; font-size: 16px; color: inherit; text-decoration: none; } .ds-nav-link:hover { opacity: 0.75; } .ds-nav-link:focus-visible { outline: none; box-shadow: 0 0 0 2px #B8FF5B; border-radius: 4px; }"
+    },
+    {
+      "name": "Tech Stack Chip",
+      "kind": "chip",
+      "refersTo": "chip-tag",
+      "description": "Monospace outlined tag used for tech-stack labels on the services page.",
+      "html": "<span class=\"ds-chip\">React</span>",
+      "css": ".ds-chip { display: inline-block; border-radius: 9999px; border: 1px solid #D1D1D1; padding: 4px 12px; font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: #6E6E6E; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Terminal Signal",
+    "overview": "This is a developer's own workbench, made presentable to clients: an off-white page that behaves like paper, interrupted by black console panels — the project showcase, the contact CTA, the chat sheet — where a single lime signal color does all the talking. The lime isn't decoration; it reads like a terminal cursor or a status LED, precise and technical rather than playful. It shows up sparingly — one button, one active state, one accent chip — and its rarity is what makes it register as \"live.\"\n\nType carries the same logic. Space Grotesk, a geometric sans, is the one voice for everything a visitor reads: headlines, body copy, labels, buttons. A second, pixel-LCD monospace font is held in reserve as a signature — it only appears on the digital clock's numerals and the chat assistant's name (\"Sonia\"), like a device display glimpsed through the interface, never used for real content. Monospace labels (breadcrumbs, service index numbers, tech-stack chips) supply the \"console\" texture without needing a second typeface.\n\nSurfaces are flat by default — no drop shadows, no gradients-as-depth, no glassmorphism beyond the header's backdrop blur. Depth comes from color contrast (paper vs. console vs. void) and from generous rounding: pill buttons, 16–20px card radii, circular avatars. The rounding is deliberate softness laid over an otherwise technical, grid-and-monospace base — approachable despite the terminal framing. The one place a shadow is allowed to exist is as a hover response on the service cards, never at rest.",
+    "keyCharacteristics": [
+      "One accent color (lime), used sparingly against black consoles and an off-white page — never a second or third hue.",
+      "Space Grotesk for everything read; the pixel-LCD font is a rare signature, confined to the clock and the bot's name.",
+      "Flat at rest everywhere; the sole shadow appears only as a hover response on service cards.",
+      "Pill buttons and 16–20px card radii soften an otherwise monospace/technical, grid-driven structure.",
+      "Dark console panels (project showcase, contact CTA, chat sheet) interrupt an otherwise light, paper-toned page."
+    ],
+    "rules": [
+      { "name": "The One Signal Rule", "body": "Lime appears on at most one interactive element's resting state per view (one primary button, one active chip) — everything else is neutral until it's hovered, focused, or selected. It is a status indicator, not a brand wash.", "section": "colors" },
+      { "name": "The One Voice Rule", "body": "Space Grotesk carries every heading, paragraph, button, and form field on the site. The pixel-LCD font never appears in a sentence — only as numerals (clock) or a proper name (the bot's identity in the chat header).", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest everywhere. A shadow may appear only as a hover/focus response (service cards); it never describes a resting state, and no drop shadows, glassmorphism, or gradient-as-depth are used elsewhere (the header's backdrop-blur is translucency, not elevation).", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep Signal Lime (#B8FF5B) to one resting-state element per screen; use hover/active/selected states to let it appear more than once, never two simultaneous primary CTAs.",
+      "Do build every new panel from the three-tone stack (Paper #F9F9F9 / Console #171717 / Void #000000) rather than introducing a fourth background tone.",
+      "Do default every new surface to flat; only add a shadow as a hover or focus response, and only on card-like elements that already lift (-translate-y-1 pattern).",
+      "Do use pill shape (rounded-full) for every button and chip; reserve 16–20px radii for cards, panels, and images.",
+      "Do keep the pixel-LCD font confined to numerals or the bot's proper name; every sentence of real content stays in Space Grotesk."
+    ],
+    "donts": [
+      "Don't introduce a second or third accent hue — the palette is one signal color plus neutrals, by design.",
+      "Don't add drop shadows, glassmorphism, or gradients as a resting-state depth cue anywhere in the system.",
+      "Don't set the pixel-LCD font as body or heading text; it reads as a display glitch outside the clock/bot-name context it was chosen for.",
+      "Don't sharpen corners on buttons or cards to less than the established radii — sharp corners break the soft-geometry-on-technical-base read that holds the system together."
+    ]
+  }
+}

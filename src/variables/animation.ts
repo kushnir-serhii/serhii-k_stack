@@ -1,6 +1,8 @@
+// The hero h1 is the LCP candidate, so it must be visible at first paint —
+// this animates the entrance offset only, never opacity.
 export const animationHeroTitle = {
-  initial: { opacity: 0, y: 40 },
-  animate: { opacity: 1, y: 0 },
+  initial: { y: 40 },
+  animate: { y: 0 },
   transition: { duration: 1, ease: "easeInOut" },
   viewport: { once: true },
 };

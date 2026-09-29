@@ -9,13 +9,13 @@ export const ContactCta: React.FC<{ id?: string }> = ({ id }) => {
     <section
       id={id}
       aria-labelledby="contact-cta-title"
-      className="scroll-mt-24 rounded-[20px] bg-bgProject p-6 text-textLight md:p-12"
+      className="scroll-mt-24 rounded-[20px] bg-black_900 p-6 text-white md:p-12"
     >
       <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
         <div className="flex max-w-[560px] flex-col gap-3">
           <h2
             id="contact-cta-title"
-            className="text-[clamp(28px,4vw,48px)] font-medium leading-[1.05] tracking-[-0.02em] text-textLight"
+            className="text-section-title text-white"
           >
             Have a project in mind?
           </h2>
@@ -26,14 +26,14 @@ export const ContactCta: React.FC<{ id?: string }> = ({ id }) => {
             <button
               type="button"
               onClick={() => openChat("Book a call with Serhii")}
-              className="inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-accentGreen px-6 font-medium text-textDark transition-transform hover:scale-[1.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-accentGreen focus-visible:ring-offset-2 focus-visible:ring-offset-bgProject"
+              className="inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full bg-green_500 px-6 font-medium text-black_900 transition-transform hover:scale-[1.03] focus-ring-dark"
             >
               Book a free call
             </button>
             <button
               type="button"
               onClick={() => openChat()}
-              className="inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full border border-grey_400 px-6 font-medium text-textLight transition-colors hover:border-accentGreen hover:text-accentGreen focus:outline-none focus-visible:ring-2 focus-visible:ring-accentGreen focus-visible:ring-offset-2 focus-visible:ring-offset-bgProject"
+              className="inline-flex h-[52px] items-center justify-center whitespace-nowrap rounded-full border border-grey_400 px-6 font-medium text-white transition-colors hover:border-green_500 hover:text-green_500 focus-ring-dark"
             >
               Ask my AI assistant
             </button>
@@ -45,7 +45,7 @@ export const ContactCta: React.FC<{ id?: string }> = ({ id }) => {
             const isMail = c.url.startsWith("mailto:");
             return (
               <li key={c.service} className="flex flex-col gap-1">
-                <span className="font-mono text-[10px] uppercase tracking-[0.06em] text-grey_400">
+                <span className="font-mono text-label uppercase text-grey_300">
                   {c.service}
                 </span>
                 <a
@@ -55,7 +55,7 @@ export const ContactCta: React.FC<{ id?: string }> = ({ id }) => {
                     rel: "noopener noreferrer",
                   })}
                   aria-label={`${c.service}: ${c.text}`}
-                  className="group inline-flex items-center gap-2 font-bold [overflow-wrap:anywhere] text-textLight transition-colors hover:text-accentGreen focus:outline-none focus-visible:ring-2 focus-visible:ring-accentGreen"
+                  className="group inline-flex items-center gap-2 font-bold [overflow-wrap:anywhere] text-white transition-colors hover:text-green_500 rounded-sm focus-ring-dark"
                 >
                   {c.text}
                   <Icon

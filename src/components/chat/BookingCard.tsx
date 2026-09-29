@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type FormEvent } from "react";
+import { useId, useMemo, useState, type FormEvent } from "react";
 import { FormField } from "./FormField";
 import type { BookingActionItem } from "./types";
 
@@ -59,6 +59,7 @@ function groupByVisitorDate(days: BookingActionItem["days"], timezone: string): 
 }
 
 export function BookingCard({ item }: { item: BookingActionItem }) {
+  const idPrefix = useId();
   const timezone = useMemo(visitorTimezone, []);
   const [days, setDays] = useState(() => groupByVisitorDate(item.days, timezone));
   const [dayIndex, setDayIndex] = useState(0);
@@ -161,11 +162,11 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
 
   if (status === "success" && success) {
     return (
-      <div className="rounded-2xl border border-accentGreen/50 bg-black_900 px-4 py-3">
-        <div className="text-[11px] font-medium uppercase leading-tight tracking-[0.08em] text-accentGreen">
+      <div role="status" className="rounded-2xl border border-green_500/50 bg-black_900 px-4 py-3">
+        <div className="text-label font-medium uppercase text-green_500">
           Booked
         </div>
-        <div className="mt-1 text-[15px] font-bold leading-snug text-textLight sm:text-sm">
+        <div className="mt-1 text-base font-bold leading-snug text-white sm:text-sm">
           {dateTimeFmt.format(new Date(success.start))}
         </div>
         {success.meetLink && (
@@ -173,12 +174,12 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
             href={success.meetLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-block text-[13px] leading-snug text-accentGreen underline underline-offset-2"
+            className="mt-2 inline-block text-sm leading-snug text-green_500 underline underline-offset-2 rounded-sm focus-ring-dark"
           >
             Join with Google Meet
           </a>
         )}
-        <div className="mt-1 text-[13px] leading-snug text-grey_300">
+        <div className="mt-1 text-sm leading-snug text-grey_300">
           Invite sent to your email.
         </div>
       </div>
@@ -187,18 +188,18 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
 
   return (
     <div className="rounded-2xl border border-grey_500 bg-black_900 px-4 py-3">
-      <div className="text-[11px] font-medium uppercase leading-tight tracking-[0.08em] text-accentGreen">
+      <div className="text-label font-medium uppercase text-green_500">
         Pick a time — {item.durationMinutes} min
       </div>
 
       {days.length === 0 ? (
-        <div className="mt-2 text-[13px] leading-snug text-grey_300">
+        <div className="mt-2 text-sm leading-snug text-grey_300">
           No open times right now — leave your contact instead and Serhii will reach out.
         </div>
       ) : (
         <>
           {/* Day strip */}
-          <div className="mt-2 flex gap-2 overflow-x-auto pb-3 pt-1" aria-label="Choose a day">
+          <div role="group" className="mt-2 flex gap-2 overflow-x-auto pb-3 pt-1" aria-label="Choose a day">
             {days.map((day, i) => (
               <button
                 key={day.date}
@@ -208,10 +209,10 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
                   setDayIndex(i);
                   setSelectedSlot(null);
                 }}
-                className={`shrink-0 rounded-xl px-3 py-2 text-[13px] leading-tight transition-colors ${
+                className={`flex min-h-11 shrink-0 items-center rounded-xl px-3 py-2 text-sm leading-tight transition-colors focus-ring-dark ${
                   i === dayIndex
-                    ? "bg-accentGreen text-black"
-                    : "bg-black text-grey_300 ring-1 ring-grey_500 hover:text-accentGreen"
+                    ? "bg-green_500 text-black"
+                    : "bg-black text-grey_300 ring-1 ring-grey_500 hover:text-green_500"
                 }`}
               >
                 {day.label}
@@ -227,11 +228,12 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
                   key={iso}
                   type="button"
                   aria-pressed={selectedSlot === iso}
+                  aria-label={`${activeDay.label}, ${timeFmt.format(new Date(iso))}`}
                   onClick={() => setSelectedSlot(selectedSlot === iso ? null : iso)}
-                  className={`rounded-lg px-3 py-1.5 text-[13px] leading-tight transition-colors ${
+                  className={`flex min-h-11 items-center rounded-lg px-3 py-1.5 text-sm leading-tight transition-colors focus-ring-dark ${
                     selectedSlot === iso
-                      ? "bg-accentGreen text-black"
-                      : "bg-black text-grey_300 ring-1 ring-grey_500 hover:text-accentGreen"
+                      ? "bg-green_500 text-black"
+                      : "bg-black text-grey_300 ring-1 ring-grey_500 hover:text-green_500"
                   }`}
                 >
                   {timeFmt.format(new Date(iso))}
@@ -240,19 +242,19 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
             </div>
           )}
 
-          <div className="mt-2 text-[12px] leading-snug text-grey_400">
+          <div className="mt-2 text-xs leading-snug text-grey_300">
             Times in your timezone ({timezone}). Serhii is in Europe/Warsaw.
           </div>
         </>
       )}
 
       {status === "conflict" && (
-        <div className="mt-3 rounded-xl bg-black px-3 py-2 text-[13px] leading-snug text-red-400 ring-1 ring-red-900">
+        <div role="alert" className="mt-3 rounded-xl bg-black px-3 py-2 text-sm leading-snug text-error_400 ring-1 ring-error_900">
           {errorMessage}
           <button
             type="button"
             onClick={refreshSlots}
-            className="ml-2 underline underline-offset-2 hover:text-red-300"
+            className="ml-2 rounded-sm underline underline-offset-2 hover:text-error_300 focus-ring-dark"
           >
             Refresh available times
           </button>
@@ -260,7 +262,7 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
       )}
 
       {status === "error" && errorMessage && (
-        <div className="mt-3 rounded-xl bg-black px-3 py-2 text-[13px] leading-snug text-red-400 ring-1 ring-red-900">
+        <div role="alert" className="mt-3 rounded-xl bg-black px-3 py-2 text-sm leading-snug text-error_400 ring-1 ring-error_900">
           {errorMessage}
         </div>
       )}
@@ -268,7 +270,7 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
       {selectedSlot && status !== "conflict" && (
         <form onSubmit={submit} noValidate className="mt-3 flex flex-col gap-2 border-t border-grey_500 pt-3">
           <FormField
-            id="booking-name"
+            id={`${idPrefix}-booking-name`}
             label="Name"
             value={name}
             onChange={(e) => {
@@ -280,7 +282,7 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
           />
 
           <FormField
-            id="booking-email"
+            id={`${idPrefix}-booking-email`}
             label="Email"
             type="email"
             value={email}
@@ -293,7 +295,7 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
           />
 
           <FormField
-            id="booking-topic"
+            id={`${idPrefix}-booking-topic`}
             label="Topic (optional)"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
@@ -302,9 +304,9 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
 
           {/* Honeypot — hidden from real visitors, only bots fill it in. */}
           <div className="hidden" aria-hidden="true">
-            <label htmlFor="booking-website">Leave this field empty</label>
+            <label htmlFor={`${idPrefix}-booking-website`}>Leave this field empty</label>
             <input
-              id="booking-website"
+              id={`${idPrefix}-booking-website`}
               name="website"
               tabIndex={-1}
               autoComplete="off"
@@ -316,8 +318,8 @@ export function BookingCard({ item }: { item: BookingActionItem }) {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="mt-1 h-10 rounded-xl bg-accentGreen text-[14px] font-medium text-black
-                       transition-opacity disabled:opacity-50"
+            className="mt-1 h-11 rounded-xl bg-green_500 text-sm font-medium text-black
+                       transition-opacity disabled:opacity-50 focus-ring-dark"
           >
             {status === "submitting" ? "Booking…" : "Book"}
           </button>

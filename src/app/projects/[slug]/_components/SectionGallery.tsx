@@ -2,14 +2,13 @@ import Image from "next/image";
 import { SectionHeader } from "./SectionHeader";
 
 type Props = {
-  sectionRef: (el: HTMLElement | null) => void;
   imgSrcArr: string[];
   title: string;
 };
 
-export function SectionGallery({ sectionRef, imgSrcArr, title }: Props) {
+export function SectionGallery({ imgSrcArr, title }: Props) {
   return (
-    <section ref={sectionRef} id="gallery">
+    <section id="gallery">
       <SectionHeader num="05" title="Gallery" />
       <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4">
         {imgSrcArr.map((src, i) => (
