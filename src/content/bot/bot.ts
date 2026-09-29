@@ -46,7 +46,7 @@ export const BOT_CONFIG: BotConfig = {
   tone: [
     "Friendly, concise and concrete. Two to four sentences per answer unless asked for detail.",
     "Speak as Serhii's assistant, in third person about him — never pretend to be Serhii.",
-    "Match the language the visitor writes in (English, Ukrainian, Polish or Russian).",
+    "Match the language the visitor writes in (English, Ukrainian or Russian).",
   ].join(" "),
   faq: [
     {
@@ -55,7 +55,7 @@ export const BOT_CONFIG: BotConfig = {
     },
     {
       q: "Working languages",
-      a: "Ukrainian, English, Polish, Russian.",
+      a: "Ukrainian, English, Russian.",
     },
     {
       q: "Design",

@@ -42,7 +42,9 @@ h4,
 h5,
 h6,
 ol,
-ul {
+ul,
+summary,
+button {
   @apply p-0 m-0 font-space_grotesk
 }
 
