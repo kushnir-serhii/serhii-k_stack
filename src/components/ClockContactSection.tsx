@@ -7,6 +7,7 @@ import { contacts } from "../content";
 // import { lazy } from "react";
 import { animationSection, animationTitleSection } from "../variables";
 import dynamic from "next/dynamic";
+import { openChat } from "../lib/openChat";
 
 const DigitalClockDynamic = dynamic(() => import("../components/DigitalClock"));  
 
@@ -22,9 +23,9 @@ export const ClockContactsSection: React.FC = () => {
         </div>
         <div className=" flex flex-col justify-between items-center gap-10 w-full xl:w-1/2 ">
           <p>
-            Thank you for stopping by! I’m always excited to explore new
-            opportunities and collaborations. Let’s connect through email,
-            phone, LinkedIn, or GitHub—I’d love to hear from you!
+            Thanks for stopping by! Open to freelance projects and contract
+            work. Write me on email, Telegram or LinkedIn — or book a free call
+            with my AI assistant.
           </p>
           <ul className="flex flex-col md:flex-row flex-wrap justify-start lg:justify-between items-start gap-4 lg:gap-2 w-full">
             {contacts.map((contact, index) => {
@@ -32,9 +33,11 @@ export const ClockContactsSection: React.FC = () => {
                 <li key={index} className="flex flex-col items-start gap-1">
                   <Link
                     href={contact.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Link to contact ${contact.url}`}
+                    {...(!contact.url.startsWith("mailto:") && {
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    })}
+                    aria-label={`Link to contact ${contact.service}`}
                     className="group flex flex-col items-start font-bold gap-2 cursor-pointer transition-all duration-300 hover:text-grey_500"
                   >
                     {contact.text}
@@ -50,6 +53,13 @@ export const ClockContactsSection: React.FC = () => {
               );
             })}
           </ul>
+          <button
+            type="button"
+            onClick={() => openChat("Book a call with Serhii")}
+            className="buttonOrLink downloadLinkBtn flex px-6 text-textDark self-start focus:outline-none focus-visible:ring-2 focus-visible:ring-green_600 focus-visible:ring-offset-2"
+          >
+            Book a free call
+          </button>
         </div>
       </motion.div>
     </section>

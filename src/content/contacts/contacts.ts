@@ -6,12 +6,12 @@ export const contacts = [
   },
   {
     text: "@SerhiyKushnir",
-    url: " https://t.me/SerhiyKushnir",
+    url: "https://t.me/SerhiyKushnir",
     service: "Telegram",
   },
   {
     text: "/in/serhiikushnir/",
     url: "https://www.linkedin.com/in/serhiikushnir",
-    service: " LinkedIn ",
+    service: "LinkedIn",
   },
 ];

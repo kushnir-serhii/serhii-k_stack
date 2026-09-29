@@ -50,7 +50,7 @@ export const Footer: React.FC = () => {
 
           <div className="flex flex-col md:flex-row items-center justify-between text-grey_400 w-64 md:px-0 sm:w-full">
             <p className="text-inherit text-center mx-auto">
-              ©Copyright Serhii Kushnir 2025. All Rights Reserved
+              ©Copyright Serhii Kushnir {new Date().getFullYear()}. All Rights Reserved
             </p>
             {/* <p className="text-inherit">Legal Info: Terms of Use</p> */}
           </div>

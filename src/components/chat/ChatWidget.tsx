@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BOT_CONFIG } from "@/content/bot/bot";
 import { useChatBot } from "./useChatBot";
 import { BookingCard } from "./BookingCard";
+import { OPEN_CHAT_EVENT, type OpenChatDetail } from "@/lib/openChat";
 
 function BotIcon({ className = "" }: { className?: string }) {
   return (
@@ -58,6 +59,23 @@ export function ChatWidget() {
   const { items, isStreaming, error, limitReached, send, reset } = useChatBot();
   const hasDraft = draft.trim().length > 0;
   const hasConversation = items.length > 1;
+
+  // Latest send/isStreaming for the window listener, so it never goes stale.
+  const sendRef = useRef(send);
+  const streamingRef = useRef(isStreaming);
+  sendRef.current = send;
+  streamingRef.current = isStreaming;
+
+  useEffect(() => {
+    const onOpen = (e: Event) => {
+      const message = (e as CustomEvent<OpenChatDetail | undefined>).detail
+        ?.message;
+      setOpen(true);
+      if (message && !streamingRef.current) void sendRef.current(message);
+    };
+    window.addEventListener(OPEN_CHAT_EVENT, onOpen);
+    return () => window.removeEventListener(OPEN_CHAT_EVENT, onOpen);
+  }, []);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -225,8 +243,7 @@ export function ChatWidget() {
                            bg-black_900 pl-2.5 pr-3.5 text-[13px] font-medium text-textLight
                            transition-colors hover:border-accentGreen hover:text-accentGreen
                            focus:outline-none focus-visible:ring-2 focus-visible:ring-accentGreen
-                            disabled:opacity-40
-                           disabled:hover:border-grey_500 disabled:hover:text-textLight"
+                           disabled:opacity-40 disabled:hover:border-grey_500 disabled:hover:text-textLight"
               >
                 <svg
                   viewBox="0 0 24 24"
