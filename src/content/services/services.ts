@@ -98,7 +98,7 @@ export const services: Service[] = [
       "AI processing of emails, documents and data",
       "Reports and alerts delivered automatically",
     ],
-    stack: ["OpenAI", "Claude", "Node.js", "n8n / Make", "Webhooks"],
+    stack: ["OpenAI", "Claude", "Node.js", "n8n", "Webhooks"],
     relatedProjects: ["catoshi"],
   },
   {
@@ -148,7 +148,7 @@ export const services: Service[] = [
       "Custom code only where it's really needed",
       "Clear path to a custom build later",
     ],
-    stack: ["Webflow", "Framer", "Supabase", "Make"],
+    stack: ["Webflow", "Framer", "Supabase", "n8n"],
   },
 ];
 

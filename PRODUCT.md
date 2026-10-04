@@ -29,7 +29,7 @@ Not an agency — a single senior full-stack/mobile developer who takes on both 
 
 ## Capabilities and Constraints
 
-- Stack shown to visitors: React, Next.js, TypeScript, Node.js, React Native/Expo, Supabase, Strapi, Sanity, Tailwind CSS, some AWS; also mentions OpenAI/Claude, Telegram Bot API, PostgreSQL, Express, Socket.io, n8n/Make, Webflow/Framer depending on service.
+- Stack shown to visitors: React, Next.js, TypeScript, Node.js, React Native/Expo, Supabase, Strapi, Sanity, Tailwind CSS, some AWS; also mentions OpenAI/Claude, Telegram Bot API, PostgreSQL, Express, Socket.io, n8n, Webflow/Framer depending on service.
 - Services offered: websites & web apps, mobile apps (iOS/Android via React Native), backend & integrations, AI assistants & chatbots, AI automation, SEO & visibility, speed & code improvement (legacy rescue), no-code/low-code MVPs.
 - Chat assistant guardrails: speaks as Serhii's assistant in third person, never impersonates Serhii; rate-limited (12 requests/min/IP, 25 user messages/session).
 - Booking flow constraint: availability, buffers, notice period and daily cap are enforced server-side against the real calendar, not just the UI.
