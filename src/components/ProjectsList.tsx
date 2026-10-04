@@ -1,15 +1,11 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { motion} from "motion/react";
 import { PROJECTS } from "../content";
 import { animationTitleSection } from "../variables";
 import { Icon } from "./ui/Icon";
-
-const ProjectItemDynamic = dynamic(() =>
-  import("./ProjectItem").then((mod) => mod.ProjectItem)
-);
+import { ProjectItem } from "./ProjectItem";
 
 const FEATURED_PROJECTS_COUNT = 3;
 
@@ -29,11 +25,9 @@ export const ProjectsList: React.FC = () => {
           {featuredProjects.map((project, index) => {
             return (
               <li key={index}>
-                <>
-                  <ProjectItemDynamic
-                    project={{ projectNuber: index + 1, ...project }}
-                  />
-                </>
+                <ProjectItem
+                  project={{ projectNuber: index + 1, ...project }}
+                />
                 {index < featuredProjects.length - 1 && (
                   <div className="w-full h-[0.5px] bg-grey_500/50"></div>
                 )}

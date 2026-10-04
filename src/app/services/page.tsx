@@ -9,6 +9,7 @@ import {
 import { ContactCta } from "@/components/ContactCta";
 import { ProjectBreadcrumb } from "../projects/[slug]/_components/ProjectBreadcrumb";
 import { ServiceRow } from "./_components/ServiceRow";
+import { FaqItem } from "./_components/FaqItem";
 
 export const metadata: Metadata = {
   title: "Services — Serhii Kushnir",
@@ -122,21 +123,9 @@ export default function ServicesPage() {
           >
             FAQ
           </h2>
-          <div className="max-w-[820px] border-t border-grey_300">
+          <div className="w-full border-t border-grey_300">
             {servicesFaq.map((f) => (
-              <details
-                key={f.q}
-                className="group border-b border-grey_300 [&_summary::-webkit-details-marker]:hidden"
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-medium text-black_900 focus-ring">
-                  {f.q}
-                  <span
-                    aria-hidden="true"
-                    className="relative size-5 shrink-0 before:absolute before:left-0 before:top-1/2 before:h-0.5 before:w-full before:-translate-y-1/2 before:bg-black_900 before:content-[''] after:absolute after:left-1/2 after:top-0 after:h-full after:w-0.5 after:-translate-x-1/2 after:bg-black_900 after:transition-transform after:duration-200 after:content-[''] group-open:after:scale-y-0"
-                  />
-                </summary>
-                <p className="max-w-[680px] pb-6 text-grey_400">{f.a}</p>
-              </details>
+              <FaqItem key={f.q} question={f.q} answer={f.a} />
             ))}
           </div>
         </section>
