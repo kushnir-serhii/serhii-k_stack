@@ -336,6 +336,58 @@ export const PROJECTS: Project[] = [
       `As the sole engineer across both repositories, I built the Next.js/TypeScript client and the Node/Express/Socket.io server as separate services: the server owns all game logic and state as the single source of truth, while the client's Zustand store re-syncs from the server's broadcasts rather than trusting local state. Notable engineering details include a server-locked shuffle order that keeps judging fair across state re-broadcasts, sessionStorage-based reconnection so dropped players don't lose their seat, and a full English/Ukrainian/Polish localization layer spanning UI copy, server-side error messages, and per-locale phrase pools. The game is deployed and live at meme-academy.vercel.app.`,
     ],
   },
+  // Meridian
+  {
+    slug: "meridian",
+    title: "Meridian: Online Shop for a Coffee Brand",
+    subtitle: "E-commerce website for coffee and coffee equipment",
+    role: "Full-Stack Developer & Designer",
+    year: "2026",
+    status: "live",
+    url: "https://coffee-shop-five-rouge.vercel.app/",
+    client: "E-commerce",
+    duration: "1 week",
+    team: "Solo engineer",
+    techStack: "Next.js, React, TypeScript, Tailwind CSS",
+    imgSrcArr: [
+      "/images/meridian_hero.webp",
+      "/images/meridian_coffee.webp",
+      "/images/meridian_mobile.webp",
+    ],
+    summary:
+      "A ready-to-sell online shop for a coffee brand: product catalog, subscriptions, cart and checkout — designed to turn visitors into regular customers.",
+    problem:
+      "A coffee business sells two very different things. Beans are a small purchase people repeat every few weeks. Grinders and espresso machines are expensive, and customers compare carefully before buying. A typical template shop handles both the same way, so it loses sales on both.",
+    approach:
+      "I built a shop that sells each product the way customers actually buy it. Coffee pages sell on taste — origin, flavour notes, roast level — to make the choice quick and emotional. Equipment pages sell on trust — clear specifications, real photos of every colour, side-by-side comparison — so buyers feel confident spending more. Everything shares one brand look, one cart and one checkout.",
+    outcome: [
+      { val: "Repeat", label: "Sales built in with a coffee subscription" },
+      { val: "3-step", label: "Checkout that keeps buyers moving" },
+      { val: "Mobile", label: "Designed for phone shoppers first" },
+    ],
+    build: [
+      {
+        title: "Catalog that helps customers choose",
+        body: "Filters by roast, taste and brewing method help customers find the right coffee in seconds. Equipment can be browsed by category and price, with a photo for every colour option.",
+      },
+      {
+        title: "Subscriptions for regular income",
+        body: "Customers can sign up for coffee delivered every week, two weeks or month, with a discount of up to 15%. One-time buyers become regular customers.",
+      },
+      {
+        title: "Cart and checkout that don't lose sales",
+        body: "One cart for all products, remembered even if the customer leaves and comes back. A short three-step checkout, ending with a clear order confirmation.",
+      },
+      {
+        title: "Ready to grow",
+        body: "Fast pages, a premium look on any screen, and attractive previews when products are shared on social media and messengers. Products are easy to add, and the shop can be connected to real payments, delivery and more languages.",
+      },
+    ],
+    description: [
+      `Meridian shows the kind of online shop I build for product brands: a coffee company selling both specialty coffee and brewing equipment, from a €48 dripper to a €2,890 espresso machine. Each product type gets pages designed around how its customers decide to buy, and a subscription turns one-time buyers into regular income.`,
+      `I designed and built the whole shop from scratch — catalog, product pages, subscription, cart, checkout, About and legal pages. It is a demo, so payments are switched off, but the same foundation can be connected to real payments, delivery and a second language for your business.`,
+    ],
+  },
   // Betski
   {
     slug: "betski",
