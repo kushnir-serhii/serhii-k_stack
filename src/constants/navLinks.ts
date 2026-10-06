@@ -8,3 +8,8 @@ export const navLinks = [
   { label: 'My CV',    href: cvPath,       external: true  },
   { label: 'Contacts', href: '/#contacts', external: false },
 ];
+
+export const legalLinks = [
+  { label: 'Privacy', href: '/privacy' },
+  { label: 'Terms',   href: '/terms' },
+];

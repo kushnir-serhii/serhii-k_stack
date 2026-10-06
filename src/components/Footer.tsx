@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { MainLogo } from "./MainLogo";
 import { LinkBtn } from "./ui/LinkBtn";
-import { navLinks, cvPath } from "../constants/navLinks";
+import { navLinks, cvPath, legalLinks } from "../constants/navLinks";
 
 export const Footer: React.FC = () => {
   return (
@@ -51,11 +51,21 @@ export const Footer: React.FC = () => {
           {/* Line */}
           <div className="w-full h-[0.5px] bg-grey_500 mb-6"></div>
 
-          <div className="flex flex-col md:flex-row items-center justify-between text-grey_300 w-64 md:px-0 sm:w-full">
-            <p className="text-inherit text-center mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-2 text-grey_300 w-64 md:px-0 sm:w-full">
+            <p className="text-inherit text-center md:text-start">
               ©Copyright Serhii Kushnir {new Date().getFullYear()}. All Rights Reserved
             </p>
-            {/* <p className="text-inherit">Legal Info: Terms of Use</p> */}
+            <nav aria-label="Legal" className="flex items-center gap-6">
+              {legalLinks.map(({ label, href }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="inline-flex min-h-11 items-center text-base text-inherit rounded-md transition-colors hover:text-white focus-ring-black"
+                >
+                  {label}
+                </Link>
+              ))}
+            </nav>
           </div>
         </div>
       </div>
