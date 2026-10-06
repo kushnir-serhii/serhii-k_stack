@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ChatWidget } from "@/components/chat/ChatWidget";
 import { MotionProvider } from "@/components/MotionProvider";
+import { SITE_URL } from "@/lib/siteUrl";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -26,7 +27,7 @@ const advanced_pixel_lcd = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fullstack-dev-sk.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: "Full Stack Dev Serhii Kushnir",
   description:
     "Hi, I'm a full-stack developer with an engineering background, specializing in scalable and efficient solutions for both team and individual projects.",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     title: "Full Stack Dev Serhii Kushnir",
     description:
       "Hi, I'm a full-stack developer with an engineering background, specializing in scalable and efficient solutions for both team and individual projects.",
-    url: "https://fullstack-dev-sk.vercel.app/",
+    url: "/",
     type: "website",
     images: [
       {
