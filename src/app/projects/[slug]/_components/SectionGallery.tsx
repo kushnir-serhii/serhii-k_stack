@@ -8,7 +8,7 @@ type Props = {
 
 export function SectionGallery({ imgSrcArr, title }: Props) {
   return (
-    <section id="gallery">
+    <section id="gallery" className="scroll-mt-28">
       <SectionHeader num="05" title="Gallery" />
       <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4">
         {imgSrcArr.map((src, i) => (

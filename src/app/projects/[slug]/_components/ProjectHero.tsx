@@ -1,6 +1,6 @@
 import type { Project } from "../../../../content";
 
-const CHIP = "inline-flex items-center gap-2 px-3 py-1.5 border border-grey_300 rounded-full font-mono text-label uppercase text-grey_400";
+const CHIP = "inline-flex items-center gap-2 px-3 py-1.5 border border-grey_300 rounded-full font-mono text-xs font-medium tracking-[0.08em] uppercase text-grey_400";
 
 export function ProjectHero({ project }: { project: Project }) {
   return (

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { TOC_ITEMS } from "./tocItems";
 
 const BASE =
-  "font-mono text-label uppercase no-underline block whitespace-nowrap transition-colors duration-200 py-2 pl-3.5 border-l max-[900px]:border-l-0 max-[900px]:border-b max-[900px]:py-1.5 max-[900px]:px-2 rounded-sm focus-ring";
+  "font-mono text-xs font-medium tracking-[0.08em] uppercase no-underline block whitespace-nowrap transition-colors duration-200 py-2 pl-3.5 border-l max-[900px]:border-l-0 max-[900px]:border-b max-[900px]:py-1.5 max-[900px]:px-2 focus-ring";
 
 export function ProjectToc() {
   const [activeSection, setActiveSection] = useState(TOC_ITEMS[0]?.id ?? "");
@@ -47,7 +47,7 @@ export function ProjectToc() {
           href={`#${id}`}
           className={
             activeSection === id
-              ? `${BASE} text-black_900 border-black_900`
+              ? `${BASE} font-semibold text-black_900 border-black_900`
               : `${BASE} text-grey_400 border-grey_300 hover:text-black_900`
           }
         >

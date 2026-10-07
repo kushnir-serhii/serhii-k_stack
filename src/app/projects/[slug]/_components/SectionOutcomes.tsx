@@ -17,7 +17,7 @@ const DESKTOP_COLS: Record<number, string> = {
 export function SectionOutcomes({ outcome }: Props) {
   const cols = Math.min(outcome.length, 4);
   return (
-    <section id="outcomes">
+    <section id="outcomes" className="scroll-mt-28">
       <SectionHeader num="03" title="Outcomes" />
       <div className={`grid grid-cols-2 gap-x-6 gap-y-0 ${DESKTOP_COLS[cols] ?? "md:grid-cols-4"}`}>
         {outcome.map((o) => (
@@ -25,7 +25,7 @@ export function SectionOutcomes({ outcome }: Props) {
             <div className="break-words font-space_grotesk text-[clamp(28px,5vw,56px)] font-medium leading-none tracking-[-0.03em] text-black_900">
               {o.val}
             </div>
-            <div className="font-mono text-label uppercase text-grey_400 mt-2">
+            <div className="font-space_grotesk text-[15px] leading-[1.5] text-grey_500 mt-3 max-w-[32ch]">
               {o.label}
             </div>
           </div>
