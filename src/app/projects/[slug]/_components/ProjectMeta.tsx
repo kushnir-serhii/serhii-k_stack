@@ -1,7 +1,7 @@
 import type { Project } from "../../../../content";
 
 const LABEL =
-  "block font-mono text-label tracking-[0.12em] uppercase text-grey_400 mb-2";
+  "block font-mono text-xs font-medium tracking-[0.08em] uppercase text-grey_400 mb-2.5";
 const VALUE =
   "text-xl md:text-2xl lg:text-3xl font-space_grotesk font-medium leading-[1.35] text-black_900";
 

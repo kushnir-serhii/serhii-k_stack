@@ -35,7 +35,7 @@ export const PROJECTS: Project[] = [
     slug: "calmisu",
     title: "Calmisu: Anxiety & Wellness App with a Calligraphy Twist",
     subtitle: "Mobile Wellness App + Full SEO/ASO Growth Pipeline",
-    role: "Full-Stack Developer",
+    role: "Mobile Developer & Web Developer",
     year: "2026",
     status: "live",
     url: "https://calmisu.com",
@@ -54,7 +54,7 @@ export const PROJECTS: Project[] = [
     problem:
       "When anxiety spikes, thoughts race and it's hard to simply sit still and relax. People need a gentle, guided way to slow down — something that gives their hands and attention a calm, simple focus until the mind follows.",
     approach:
-      "Built a React Native (Expo) app on Neon (Postgres + Auth) with RevenueCat handling subscription monetization and Firebase Analytics tracking funnel events, centered on calligraphy tracing as a visual, tactile alternative to generic breathing timers. Paired it with an Astro landing site and blog engineered for search from the ground up — structured data (Organization/WebSite/MobileApplication/FAQPage JSON-LD), sitemap submission and indexing requests, Core Web Vitals fixes (image compression, font loading, LCP priority), and a content strategy targeting long-tail anxiety-relief search terms. Growth is driven by organic channels only: SEO-optimized blog content and a Reddit warm-up/posting strategy, with in-app review prompts tied to a mood-check survey to build Play Store social proof over time.",
+      "Built a React Native (Expo) app on Neon (Postgres + Auth) with RevenueCat handling subscription monetization and Firebase Analytics tracking funnel events, centered on calligraphy tracing as a visual, tactile alternative to generic breathing timers. On the web side, took over the existing Astro landing site and blog and re-engineered it for search — structured data (Organization/WebSite/MobileApplication/FAQPage JSON-LD), sitemap submission and indexing requests, Core Web Vitals fixes (image compression, font loading, LCP priority), and a content strategy targeting long-tail anxiety-relief search terms. Growth is driven by organic channels only: SEO-optimized blog content and a Reddit warm-up/posting strategy, with in-app review prompts tied to a mood-check survey to build Play Store social proof over time.",
     outcome: [
       {
         val: "4",
@@ -77,7 +77,7 @@ export const PROJECTS: Project[] = [
       },
       {
         title: "Technical SEO & content engine",
-        body: "Astro landing site with JSON-LD structured data, trailing-slash normalization, redirect handling for retired article slugs, Android App Links via assetlinks.json, and a blog whose frontmatter title is the single source of truth for H1, card, and page title — built to rank on long-tail anxiety and grounding search terms without ad spend.",
+        body: "Extended the existing Astro landing site with JSON-LD structured data, trailing-slash normalization, redirect handling for retired article slugs, Android App Links via assetlinks.json, and a blog whose frontmatter title is the single source of truth for H1, card, and page title — built to rank on long-tail anxiety and grounding search terms without ad spend.",
       },
       {
         title: "Compliant monetization & analytics",
@@ -86,7 +86,7 @@ export const PROJECTS: Project[] = [
     ],
     description: [
       `Calmisu (published on Google Play as "Calm Is You") is an anxiety and wellness app that leads with a genuine differentiator — calligraphy tracing as a meditative, tactile alternative to yet another breathing timer — alongside guided breathing, nature soundscapes, and a reflective AI chat space with deliberate safety guardrails. It's free to install, with subscription monetization handled through RevenueCat.`,
-      `Working alongside a designer who shaped the visual identity and UX, I own the engineering end to end: the Expo/Neon app itself, the Astro marketing site and blog, and the growth layer that gets both of them found — technical SEO (structured data, indexing, Core Web Vitals), a zero-budget organic content and Reddit strategy, and Play Store compliance work like correctly scoping the Data Safety declaration for RevenueCat's data flows. The project is in active launch and growth phase: the app and site are live, and the current focus is content depth, social proof, and ASO refinement to convert early technical groundwork into real search visibility.`,
+      `Working alongside a designer who shaped the visual identity and UX, I built the mobile app — the Expo/Neon app itself — and took over web development on the existing Astro marketing site and blog, along with the growth layer that gets both of them found — technical SEO (structured data, indexing, Core Web Vitals), a zero-budget organic content and Reddit strategy, and Play Store compliance work like correctly scoping the Data Safety declaration for RevenueCat's data flows. The project is in active launch and growth phase: the app and site are live, and the current focus is content depth, social proof, and ASO refinement to convert early technical groundwork into real search visibility.`,
     ],
   },
   // CloudBitPay
