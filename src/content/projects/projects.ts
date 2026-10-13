@@ -97,7 +97,7 @@ export const PROJECTS: Project[] = [
     role: "Full Stack Engineer",
     year: "2026",
     status: "live",
-    url: null,
+    url: "https://www.cloudbitpay.com/",
     client: "Fintech / iGaming",
     duration: "1 month",
     team: "Solo engineer",
