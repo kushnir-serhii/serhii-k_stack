@@ -3,8 +3,7 @@ import type { RefObject } from "react";
 import { Icon } from "./ui/Icon";
 import { NavItem } from "./HeaderNavItem";
 import { MainLogo } from "./MainLogo";
-import { LinkBtn } from "./ui/LinkBtn";
-import { navLinks, cvPath } from "../constants/navLinks";
+import { navLinks } from "../constants/navLinks";
 
 interface HeaderNavMenuMobileProps {
   onClose: () => void;
@@ -22,27 +21,17 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuMobileProps> = ({
       className="relative z-20 flex flex-col justify-between items-center text-2xl text-black_900 bg-bg gap-10 px-4 pt-14 pb-4"
     >
       <MainLogo classNameLogo="text-2xl text-black_900" classNameLink="focus-ring rounded-md" />
-      {navLinks
-        .filter(({ label }) => label !== "My CV")
-        .map(({ label, href, external }) => (
-          <NavItem key={label}>
-            <Link
-              href={href}
-              className="p-2 rounded-md focus-ring"
-              {...(external && { target: "_blank", rel: "noopener noreferrer" })}
-            >
-              {label}
-            </Link>
-          </NavItem>
-        ))}
-
-      <LinkBtn
-        href={cvPath}
-        ariaLabel="Download CV"
-        className="downloadLinkBtn w-full flex focus-ring"
-      >
-        Open CV
-      </LinkBtn>
+      {navLinks.map(({ label, href, external }) => (
+        <NavItem key={label}>
+          <Link
+            href={href}
+            className="p-2 rounded-md focus-ring"
+            {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+          >
+            {label}
+          </Link>
+        </NavItem>
+      ))}
       <button
         ref={closeButtonRef}
         type="button"

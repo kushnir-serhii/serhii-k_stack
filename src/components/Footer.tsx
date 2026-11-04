@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
           <MainLogo classNameLogo="text-white" classNameLink="focus-ring-black rounded-md" />
           <div className="flex flex-col md:flex-row items-center md:justify-end gap-6 w-full md:max-w-[540px]">
             {navLinks
-              .filter(({ label }) => label !== "My CV" && label !== "Contacts")
+              .filter(({ label }) => label !== "Contacts")
               .map(({ label, href, external }) => (
                 <Link
                   key={label}
