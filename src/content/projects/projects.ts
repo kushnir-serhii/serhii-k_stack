@@ -45,9 +45,10 @@ export const PROJECTS: Project[] = [
       "React Native (Expo), TypeScript, Neon, RevenueCat, Firebase Analytics, Astro",
     imgSrcArr: [
       "/images/calmisu_app.webp",
-      "/images/calmisu_app_2.webp",
-      "/images/calmisu_breath.webp",
-      "/images/calmisu_kanji.webp",
+      "/images/calmisu_landing.webp",
+      "/images/calmisu_app_2_meditation.webp",
+      "/images/calmisu_breath_one.webp",
+      "/images/calmisu_kanji_3_screens.webp",
     ], // TODO: swap in real screenshots
     summary:
       "Anxiety and wellness app built around a calligraphy-tracing differentiator, shipped with a full technical SEO and ASO layer to grow organically on a zero-dollar marketing budget.",
@@ -154,7 +155,11 @@ export const PROJECTS: Project[] = [
     duration: "1 month",
     team: "Designer & engineer",
     techStack: "React, Vite, TS, Lovable, Claude Code, openAI API, Supabase",
-    imgSrcArr: ["/images/nuance.webp", "/images/nuance_mobile.webp"],
+    imgSrcArr: [
+      "/images/nuance.webp",
+      "/images/nuance_mobile.webp",
+      "/images/nuance_social_translator_mobile.webp",
+    ],
     summary:
       "An AI-powered workplace communication platform helping non-native English speakers master the social nuance of communication in global tech companies through realistic scenarios and instant AI feedback.",
     problem:
@@ -239,6 +244,60 @@ export const PROJECTS: Project[] = [
     description: [
       `Meridian shows the kind of online shop I build for product brands: a coffee company selling both specialty coffee and brewing equipment, from a €48 dripper to a €2,890 espresso machine. Each product type gets pages designed around how its customers decide to buy, and a subscription turns one-time buyers into regular income.`,
       `I designed and built the whole shop from scratch — catalog, product pages, subscription, cart, checkout, About and legal pages. It is a demo, so payments are switched off, but the same foundation can be connected to real payments, delivery and a second language for your business.`,
+    ],
+  },
+  // Robin Hale — photographer portfolio
+  {
+    slug: "robin-hale",
+    title: "Robin Hale: Demo Website for Photographers",
+    subtitle:
+      "Ready-to-adapt photographer site with booking, price calculator and client gallery",
+    role: "Full-Stack Developer & Designer",
+    year: "2026",
+    status: "wip",
+    url: null,
+    client: "Photography / Creative services",
+    duration: "7 weeks (ongoing)",
+    team: "Solo engineer",
+    techStack: "Astro, TypeScript, CSS, Playwright, JSON-LD / schema.org",
+    imgSrcArr: [
+      "/images/photo_hero_x1.webp",
+      "/images/photo_gallery_x1.webp",
+      "/images/photo_calc_price_x1.webp",
+      "/images/photo_3_mobile_x1.webp",
+    ],
+    summary:
+      "A demo website for photographers, shown as a London brand photographer's site, that turns visitors into booked shoots: transparent prices with a live quote calculator, a brief that arrives already filled in, local search pages, and a private client gallery for picking selects.",
+    problem:
+      "Photographers lose time and bookings to the same problems: vague \"how much?\" emails, briefs that arrive half-written, clients who can't find them on Google, and a separate paid gallery service just to get photo approvals. A typical template portfolio shows the pictures but does nothing to get the shoot booked.",
+    approach:
+      "I built the site around the path a client takes to a booking. Work is shown first and big, filtered by sector, with video next to stills. Prices and usage terms are in the open, and a calculator lets the client build their own quote. Choosing a package fills in the brief automatically, an availability calendar shows free dates, and phone, WhatsApp or the form are always one tap away. Every name, price, project and photo lives in one data file, so the site can be re-dressed for a real photographer in days, not weeks.",
+    outcome: [
+      { val: "1-click", label: "From package to a pre-filled brief or WhatsApp message" },
+      { val: "9", label: "Local area pages for search (London districts and UK cities)" },
+      { val: "0", label: "Backend or database needed — fully static and fast" },
+    ],
+    build: [
+      {
+        title: "Live price calculator",
+        body: "The client picks a package, adds extras like extra usage, retouching per image, short video or extra hours, and sees the total update instantly. One click sends the quote to the photographer — it arrives already inside the brief and the WhatsApp message.",
+      },
+      {
+        title: "Booking flow with one tap to a human",
+        body: "\"Book this\" on any package opens a brief that is already filled in. An availability calendar shows booked and half-free days, and a quick-contact panel offers call, WhatsApp, email or the full brief from any page, on any phone.",
+      },
+      {
+        title: "Found locally on Google",
+        body: "A page for each London area and UK city served, structured data for Google (business details, prices per package, FAQ, breadcrumbs), a service-area map, sitemap and robots.txt — so searches like \"brand photographer Shoreditch\" lead to the site.",
+      },
+      {
+        title: "Private client gallery",
+        body: "Clients open their gallery with a code, mark their favourite shots, filter to just their selects, and send the selection back for retouching — showing the photographer they can drop a separate gallery subscription.",
+      },
+    ],
+    description: [
+      `Robin Hale is a demo website I built to show photographers what their own site could do. It is dressed as the site of a brand and commercial photographer in London (the name, clients and photos are placeholders), and it works like the real thing: it doesn't just show beautiful work, it answers the client's questions — price, usage rights, turnaround, availability — and gets the shoot booked with less back-and-forth.`,
+      `I designed and built the whole site: a dark, studio-style design system with subtle motion, a gallery and film reel, transparent rates with a live calculator, a booking flow with a pre-filled brief and WhatsApp messages, local SEO pages with structured data, and a private client gallery for photo selection. Every piece of content is data, not code, so a real photographer's name, prices, areas and photos can be swapped in quickly. Automated Playwright checks test every page on desktop and phone before each change ships.`,
     ],
   },
   // Catoshi
@@ -337,6 +396,58 @@ export const PROJECTS: Project[] = [
       `As a Front End Developer, I built the entire frontend from scratch — architecting the Zustand store layer (user, swap settings, balances, token universe, and trending tokens), integrating Lightweight Charts for real-time OHLCV candlestick visualizations across 6 timeframes, and implementing the full swap flow with token search, quote fetching via Jupiter integration, slippage and priority fee controls, and live transaction status tracking. I also developed the leaderboard and referral dashboards, a multi-step account creation flow, and a fully responsive mobile-first UI with Tailwind CSS.`,
     ],
   },
+  // Reel Reveal
+  {
+    slug: "reel-reveal",
+    title: "Movie Matching Web Application",
+    subtitle: "AI-Driven Movie Matching App",
+    role: "Full Stack Developer",
+    year: "2024",
+    status: "live",
+    url: "https://www.reel-reveal.club/",
+    duration: "4 months",
+    team: "Solo engineer",
+    techStack:
+      "React, TS, Next.js, Tailwind CSS, useSWR, React-Hook-Form, MongoDB, Openai API, TMDB API, Stripe",
+    imgSrcArr: [
+      "/images/reel_reveal_1x.webp",
+      "/images/reel-reveal_napoleon.webp",
+      "/images/reel_reveal_mob.webp",
+    ],
+    summary:
+      "AI-driven movie recommendations via a preference quiz, plus AI-powered similar-movie matching — with Google auth and Stripe payments.",
+    problem:
+      "Users struggle to find movies they'll actually enjoy. Existing platforms rely on basic genre filtering — there was no AI-driven matching that understands nuanced user preferences.",
+    approach:
+      "Built the full stack from scratch — a quiz flow where users answer a series of preference questions, with OpenAI turning the answers into personalized movie recommendations. A second AI-powered feature suggests similar movies based on a title the user already likes. Next.js with Google Authentication, MongoDB for user data, and TMDB API for movie metadata round out the stack.",
+    outcome: [
+      { val: "AI", label: "Powered matching" },
+      { val: "2", label: "AI-driven features (quiz + similar movies)" },
+      { val: "Stripe", label: "Payment integration" },
+    ],
+    build: [
+      {
+        title: "Quiz-driven AI recommendations",
+        body: "Users answer a short preference quiz; OpenAI API turns the answers into a personalized set of movie recommendations.",
+      },
+      {
+        title: "Similar-movies AI matching",
+        body: "A second OpenAI-powered flow suggests movies similar to a title the user selects, independent of the quiz.",
+      },
+      {
+        title: "Authentication",
+        body: "Secure Google Authentication with session management and user profile persistence in MongoDB.",
+      },
+      {
+        title: "Movie data layer",
+        body: "TMDB API integration for rich movie metadata — posters, ratings, cast, and streaming availability.",
+      },
+    ],
+    description: [
+      `As a full-stack developer on this project, I took ownership of both the frontend and backend development, ensuring a seamless and intuitive user experience.`,
+      `I built the frontend from scratch using modern technologies, frameworks and tools like React, Next.js, TypeScript, and Tailwind CSS, adhering to industry best practices for structure and scalability. On the backend, I implemented a secure and efficient system using MongoDB for data management and Google Authentication for user login. I integrated the OpenAI API in two places: a preference quiz that turns a user's answers into personalized movie recommendations, and a similar-movies feature that suggests titles related to one the user already likes.`,
+    ],
+  },
   // Meme-academy
   {
     slug: "meme-academy",
@@ -431,7 +542,7 @@ export const PROJECTS: Project[] = [
       `As a Front End Developer, I built the dashboard from scratch using Next.js 15 and Tailwind CSS — implementing Lightweight Charts for real-time OHLCV candlestick and area price visualizations with a custom ResizeObserver hook for responsive sizing, a full staking flow with tiered withdrawal fees and compound frequency controls, and wallet authentication via Privy (Phantom, Solflare). I optimised performance through dynamic imports for heavy components, debounced API calls, and client-side caching.`,
     ],
   },
-  // Apeing AI
+  //  Apeing AI
   {
     slug: "apeing-ai",
     title: "Apeing AI: Solana Trading & Copy Trade Platform",
@@ -478,185 +589,137 @@ export const PROJECTS: Project[] = [
       `As a Front End Developer, I built the frontend from scratch using Next.js 15 with Turbopack, SCSS modules, and Redux Toolkit for global popup and notification state. I implemented complex data tables with TanStack React Table, integrated ApexCharts and Chart.js for PnL and portfolio visualisations, embedded real-time token charts via the gmgn.cc API, and developed a drag-and-drop room interface with @neodrag/react.`,
     ],
   },
-  // Reel Reveal
-  {
-    slug: "reel-reveal",
-    title: "Movie Matching Web Application",
-    subtitle: "AI-Driven Movie Matching App",
-    role: "Full Stack Developer",
-    year: "2024",
-    status: "live",
-    url: "https://www.reel-reveal.club/",
-    duration: "4 months",
-    team: "Solo engineer",
-    techStack:
-      "React, TS, Next.js, Tailwind CSS, useSWR, React-Hook-Form, MongoDB, Openai API, TMDB API, Stripe",
-    imgSrcArr: ["/images/reel_reveal.webp", "/images/reel_reveal_mob.webp"],
-    summary:
-      "AI-driven movie recommendations via a preference quiz, plus AI-powered similar-movie matching — with Google auth and Stripe payments.",
-    problem:
-      "Users struggle to find movies they'll actually enjoy. Existing platforms rely on basic genre filtering — there was no AI-driven matching that understands nuanced user preferences.",
-    approach:
-      "Built the full stack from scratch — a quiz flow where users answer a series of preference questions, with OpenAI turning the answers into personalized movie recommendations. A second AI-powered feature suggests similar movies based on a title the user already likes. Next.js with Google Authentication, MongoDB for user data, and TMDB API for movie metadata round out the stack.",
-    outcome: [
-      { val: "AI", label: "Powered matching" },
-      { val: "2", label: "AI-driven features (quiz + similar movies)" },
-      { val: "Stripe", label: "Payment integration" },
-    ],
-    build: [
-      {
-        title: "Quiz-driven AI recommendations",
-        body: "Users answer a short preference quiz; OpenAI API turns the answers into a personalized set of movie recommendations.",
-      },
-      {
-        title: "Similar-movies AI matching",
-        body: "A second OpenAI-powered flow suggests movies similar to a title the user selects, independent of the quiz.",
-      },
-      {
-        title: "Authentication",
-        body: "Secure Google Authentication with session management and user profile persistence in MongoDB.",
-      },
-      {
-        title: "Movie data layer",
-        body: "TMDB API integration for rich movie metadata — posters, ratings, cast, and streaming availability.",
-      },
-    ],
-    description: [
-      `As a full-stack developer on this project, I took ownership of both the frontend and backend development, ensuring a seamless and intuitive user experience.`,
-      `I built the frontend from scratch using modern technologies, frameworks and tools like React, Next.js, TypeScript, and Tailwind CSS, adhering to industry best practices for structure and scalability. On the backend, I implemented a secure and efficient system using MongoDB for data management and Google Authentication for user login. I integrated the OpenAI API in two places: a preference quiz that turns a user's answers into personalized movie recommendations, and a similar-movies feature that suggests titles related to one the user already likes.`,
-    ],
-  },
   // Invest
-  {
-    slug: "invest",
-    title: "Investors and Startups Matching Web Application",
-    subtitle: "Investors & Startups Matching Platform",
-    role: "Full Stack Developer",
-    year: "2024",
-    status: "private",
-    url: null,
-    duration: "3 months",
-    team: "2 engineers",
-    techStack:
-      "Next.js, TypeScript, Axios, useSWR, Material UI, Tailwind CSS, Strapi, Node.js, PostgreSQL",
-    imgSrcArr: ["/images/invest.webp", "/images/invest_register.webp"],
-    summary:
-      "Multilingual investor/startup matching platform with OpenAI-assisted discovery and full registration flows.",
-    problem:
-      "Startups and investors needed a dedicated platform for discovery and matching — with multilingual support, structured registration flows, and AI-assisted recommendation to reduce cold outreach.",
-    approach:
-      "Designed and implemented the full-stack architecture — multilingual frontend with Next.js, Strapi backend with PostgreSQL, and OpenAI integration for intelligent matching between investors and startups.",
-    outcome: [
-      { val: "Multi", label: "Language support" },
-      { val: "OpenAI", label: "Matching engine" },
-      { val: "Strapi", label: "CMS backend" },
-    ],
-    build: [
-      {
-        title: "Multilingual frontend",
-        body: "Localization system supporting multiple languages with dynamic content switching and locale-aware routing.",
-      },
-      {
-        title: "Registration flows",
-        body: "Structured user registration and login for both investor and startup profiles with role-based content access.",
-      },
-      {
-        title: "AI matching",
-        body: "OpenAI API integration for intelligent matching suggestions based on startup stage, industry, and investor criteria.",
-      },
-    ],
-    description: [
-      `As a full-stack developer, I was responsible for designing and implementing a scalable and user-centric architecture. On the frontend, I developed the project architecture in line with design requirements, implemented localization to support multilingual components, and built the functionality for user registration and login.`,
-      `On the backend, I configured dynamic multilingual components to handle content in multiple languages and integrated the OpenAI API to meet the project's core functional requirements.`,
-    ],
-  },
+  // {
+  //   slug: "invest",
+  //   title: "Investors and Startups Matching Web Application",
+  //   subtitle: "Investors & Startups Matching Platform",
+  //   role: "Full Stack Developer",
+  //   year: "2024",
+  //   status: "private",
+  //   url: null,
+  //   duration: "3 months",
+  //   team: "2 engineers",
+  //   techStack:
+  //     "Next.js, TypeScript, Axios, useSWR, Material UI, Tailwind CSS, Strapi, Node.js, PostgreSQL",
+  //   imgSrcArr: ["/images/invest.webp", "/images/invest_register.webp"],
+  //   summary:
+  //     "Multilingual investor/startup matching platform with OpenAI-assisted discovery and full registration flows.",
+  //   problem:
+  //     "Startups and investors needed a dedicated platform for discovery and matching — with multilingual support, structured registration flows, and AI-assisted recommendation to reduce cold outreach.",
+  //   approach:
+  //     "Designed and implemented the full-stack architecture — multilingual frontend with Next.js, Strapi backend with PostgreSQL, and OpenAI integration for intelligent matching between investors and startups.",
+  //   outcome: [
+  //     { val: "Multi", label: "Language support" },
+  //     { val: "OpenAI", label: "Matching engine" },
+  //     { val: "Strapi", label: "CMS backend" },
+  //   ],
+  //   build: [
+  //     {
+  //       title: "Multilingual frontend",
+  //       body: "Localization system supporting multiple languages with dynamic content switching and locale-aware routing.",
+  //     },
+  //     {
+  //       title: "Registration flows",
+  //       body: "Structured user registration and login for both investor and startup profiles with role-based content access.",
+  //     },
+  //     {
+  //       title: "AI matching",
+  //       body: "OpenAI API integration for intelligent matching suggestions based on startup stage, industry, and investor criteria.",
+  //     },
+  //   ],
+  //   description: [
+  //     `As a full-stack developer, I was responsible for designing and implementing a scalable and user-centric architecture. On the frontend, I developed the project architecture in line with design requirements, implemented localization to support multilingual components, and built the functionality for user registration and login.`,
+  //     `On the backend, I configured dynamic multilingual components to handle content in multiple languages and integrated the OpenAI API to meet the project's core functional requirements.`,
+  //   ],
+  // },
   // Teens Ukraine
-  {
-    slug: "teens-ukraine",
-    title: "Teens Ukraine Educational Initiative Game",
-    subtitle: "Educational Initiative Super-Game",
-    role: "Front End Developer",
-    year: "2023",
-    status: "live",
-    url: "https://teens-ukraine.games",
-    duration: "2 months",
-    team: "3 engineers",
-    techStack: "React, TS, Next.js, Tailwind CSS",
-    imgSrcArr: ["/images/teen.webp", "/images/teen_table.webp"],
-    summary:
-      "Real-time admin panel and game interface for an educational initiative super-game with live participant tracking.",
-    problem:
-      "An educational initiative needed a real-time game platform capable of managing hundreds of participants simultaneously, displaying live intermediate scores, and providing an admin panel for game orchestration.",
-    approach:
-      "Built the admin panel and game interface with Next.js and Tailwind CSS — implementing real-time response calculation, intermediate/final scoring tables, and reusable hooks for music and loader state management.",
-    outcome: [
-      { val: "Real", label: "Time scoring" },
-      { val: "Live", label: "Participant tracking" },
-      { val: "Multi", label: "Stage game flow" },
-    ],
-    build: [
-      {
-        title: "Admin panel",
-        body: "Real-time admin interface to orchestrate the game, calculate participant responses, and advance game stages.",
-      },
-      {
-        title: "Scoring tables",
-        body: "Dynamic intermediate and final score tables with live updates across all participant sessions.",
-      },
-      {
-        title: "Reusable hooks",
-        body: "useMusic for cross-component audio management and useLoader for centralized loading state — reducing repetition across game stages.",
-      },
-    ],
-    description: [
-      `As a front-end developer on this project, I contributed to building an interactive and efficient admin panel and game interface. I designed and implemented the admin panel to calculate participant responses in a real-time super game involving all players. I developed core logic for the game, including displaying intermediate and final tables, and integrated mechanics for smooth gameplay.`,
-      `I also created reusable solutions like the useMusic hook for managing music across components and a useLoader implementation for centralized loader state management. Additionally, I developed new components, such as a disclaimer with a timer before the game starts and reusable modals, loaders, and pop-ups to streamline functionality.`,
-    ],
-  },
+  // {
+  //   slug: "teens-ukraine",
+  //   title: "Teens Ukraine Educational Initiative Game",
+  //   subtitle: "Educational Initiative Super-Game",
+  //   role: "Front End Developer",
+  //   year: "2023",
+  //   status: "live",
+  //   url: "https://teens-ukraine.games",
+  //   duration: "2 months",
+  //   team: "3 engineers",
+  //   techStack: "React, TS, Next.js, Tailwind CSS",
+  //   imgSrcArr: ["/images/teen.webp", "/images/teen_table.webp"],
+  //   summary:
+  //     "Real-time admin panel and game interface for an educational initiative super-game with live participant tracking.",
+  //   problem:
+  //     "An educational initiative needed a real-time game platform capable of managing hundreds of participants simultaneously, displaying live intermediate scores, and providing an admin panel for game orchestration.",
+  //   approach:
+  //     "Built the admin panel and game interface with Next.js and Tailwind CSS — implementing real-time response calculation, intermediate/final scoring tables, and reusable hooks for music and loader state management.",
+  //   outcome: [
+  //     { val: "Real", label: "Time scoring" },
+  //     { val: "Live", label: "Participant tracking" },
+  //     { val: "Multi", label: "Stage game flow" },
+  //   ],
+  //   build: [
+  //     {
+  //       title: "Admin panel",
+  //       body: "Real-time admin interface to orchestrate the game, calculate participant responses, and advance game stages.",
+  //     },
+  //     {
+  //       title: "Scoring tables",
+  //       body: "Dynamic intermediate and final score tables with live updates across all participant sessions.",
+  //     },
+  //     {
+  //       title: "Reusable hooks",
+  //       body: "useMusic for cross-component audio management and useLoader for centralized loading state — reducing repetition across game stages.",
+  //     },
+  //   ],
+  //   description: [
+  //     `As a front-end developer on this project, I contributed to building an interactive and efficient admin panel and game interface. I designed and implemented the admin panel to calculate participant responses in a real-time super game involving all players. I developed core logic for the game, including displaying intermediate and final tables, and integrated mechanics for smooth gameplay.`,
+  //     `I also created reusable solutions like the useMusic hook for managing music across components and a useLoader implementation for centralized loader state management. Additionally, I developed new components, such as a disclaimer with a timer before the game starts and reusable modals, loaders, and pop-ups to streamline functionality.`,
+  //   ],
+  // },
   // TeraTeam
-  {
-    slug: "terateam",
-    title: "TeraTeam Startups Colaboration Web Platform",
-    subtitle: "Startups Collaboration Platform",
-    role: "Front End Developer",
-    year: "2023",
-    status: "private",
-    url: null,
-    duration: "3 months",
-    team: "4 engineers",
-    techStack:
-      "React, TS, Next.js, Tailwind CSS, useSWR, Redux, Axios, React-Hook-Form, Yup",
-    imgSrcArr: ["/images/marketplace.webp", "/images/form.webp"],
-    summary:
-      "Project creation flows, SVG sprite optimization (−25% load time), and universal modals for a startup marketplace.",
-    problem:
-      "The platform needed a polished project creation flow, consistent modal system, and performance improvements — the existing page load was slow and the UI lacked cohesion across devices.",
-    approach:
-      "Implemented SVG sprites reducing load time by 25%, built a project creation form with React Hook Form + Yup, refactored the responsive design for header/footer, and created universal modal and loader components.",
-    outcome: [
-      { val: "−25%", label: "Page load time" },
-      { val: "SVG", label: "Sprite system" },
-      { val: "Universal", label: "Modal system" },
-    ],
-    build: [
-      {
-        title: "Project creation form",
-        body: "Multi-field form with useSWR, React Hook Form, Yup validation, React-Datepicker, and Quill rich text editor.",
-      },
-      {
-        title: "SVG sprite optimization",
-        body: "Implemented SVG sprites across the platform, reducing page load times by 25% by eliminating redundant icon requests.",
-      },
-      {
-        title: "Universal components",
-        body: "Reusable modal and loader components that standardized UX patterns across all pages and user flows.",
-      },
-    ],
-    description: [
-      `As a front-end developer, I contributed to enhancing the functionality and usability of the project. I developed a new project creation form using useSWR, React Hook Form, Yup, React-Datepicker, and Quill, providing a seamless and intuitive interface for data entry.`,
-      `To optimize performance, I implemented SVG sprites, reducing page load times by 25% and improving the user experience. I also refactored the responsive design of the homepage, header, and footer, ensuring a consistent, modern look across devices. Additionally, I created a universal modal and loader, streamlining user interactions and improving the overall usability of the application.`,
-    ],
-  },
+  // {
+  //   slug: "terateam",
+  //   title: "TeraTeam Startups Colaboration Web Platform",
+  //   subtitle: "Startups Collaboration Platform",
+  //   role: "Front End Developer",
+  //   year: "2023",
+  //   status: "private",
+  //   url: null,
+  //   duration: "3 months",
+  //   team: "4 engineers",
+  //   techStack:
+  //     "React, TS, Next.js, Tailwind CSS, useSWR, Redux, Axios, React-Hook-Form, Yup",
+  //   imgSrcArr: ["/images/marketplace.webp", "/images/form.webp"],
+  //   summary:
+  //     "Project creation flows, SVG sprite optimization (−25% load time), and universal modals for a startup marketplace.",
+  //   problem:
+  //     "The platform needed a polished project creation flow, consistent modal system, and performance improvements — the existing page load was slow and the UI lacked cohesion across devices.",
+  //   approach:
+  //     "Implemented SVG sprites reducing load time by 25%, built a project creation form with React Hook Form + Yup, refactored the responsive design for header/footer, and created universal modal and loader components.",
+  //   outcome: [
+  //     { val: "−25%", label: "Page load time" },
+  //     { val: "SVG", label: "Sprite system" },
+  //     { val: "Universal", label: "Modal system" },
+  //   ],
+  //   build: [
+  //     {
+  //       title: "Project creation form",
+  //       body: "Multi-field form with useSWR, React Hook Form, Yup validation, React-Datepicker, and Quill rich text editor.",
+  //     },
+  //     {
+  //       title: "SVG sprite optimization",
+  //       body: "Implemented SVG sprites across the platform, reducing page load times by 25% by eliminating redundant icon requests.",
+  //     },
+  //     {
+  //       title: "Universal components",
+  //       body: "Reusable modal and loader components that standardized UX patterns across all pages and user flows.",
+  //     },
+  //   ],
+  //   description: [
+  //     `As a front-end developer, I contributed to enhancing the functionality and usability of the project. I developed a new project creation form using useSWR, React Hook Form, Yup, React-Datepicker, and Quill, providing a seamless and intuitive interface for data entry.`,
+  //     `To optimize performance, I implemented SVG sprites, reducing page load times by 25% and improving the user experience. I also refactored the responsive design of the homepage, header, and footer, ensuring a consistent, modern look across devices. Additionally, I created a universal modal and loader, streamlining user interactions and improving the overall usability of the application.`,
+  //   ],
+  // },
   // {
   //   slug: "book-my-event",
   //   title: "Book MY Event: Event Aggregator",
