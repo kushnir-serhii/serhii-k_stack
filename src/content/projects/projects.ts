@@ -252,12 +252,12 @@ export const PROJECTS: Project[] = [
     title: "Robin Hale: Demo Website for Photographers",
     subtitle:
       "Ready-to-adapt photographer site with booking, price calculator and client gallery",
-    role: "Full-Stack Developer & Designer",
+    role: "Full-Stack Developer",
     year: "2026",
     status: "wip",
     url: null,
     client: "Photography / Creative services",
-    duration: "7 weeks (ongoing)",
+    duration: "3 weeks (ongoing)",
     team: "Solo engineer",
     techStack: "Astro, TypeScript, CSS, Playwright, JSON-LD / schema.org",
     imgSrcArr: [
