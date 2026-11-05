@@ -1,0 +1,90 @@
+# 001 — Move hosting from Vercel to Cloudflare Workers
+
+**Status:** draft · **Depends on:** — · **Route(s):** all, `/api/chat`, `/api/booking` · **Branch:** `cloudflare-migration` → PR into `main-cloudflare`
+
+## Goal
+The site, the chat assistant and calendar booking run on Cloudflare Workers (via the OpenNext adapter) and deploy from `main-cloudflare`, so the site can be used commercially for the business without Vercel Pro ($20/month). Hosting costs $0 (Free) or $5/month (Workers Paid).
+
+## Why
+Vercel's Hobby plan is for non-commercial personal use only; "advertising the sale of a product or service" counts as commercial. This site sells services (`/services`, lead capture to Telegram, sales-call booking), so staying on Hobby risks a paused deployment. Cloudflare's free plan has no such restriction.
+
+## Scope
+- In:
+  - OpenNext adapter (`@opennextjs/cloudflare` ≥ 1.3.0: older versions have an SSRF issue in `/_next/image`) and `wrangler`, with `wrangler.jsonc`, `open-next.config.ts`, `preview` / `deploy` / `cf-typegen` scripts.
+  - Removing Vercel-only assumptions in code: `VERCEL_PROJECT_PRODUCTION_URL` in `src/lib/siteUrl.ts`; client IP header in `src/lib/ai/rateLimit.ts`.
+  - The `next/image` strategy on Workers.
+  - Docs: README deploy section, `.env.example`, `CLAUDE.md` commands, `docs/setup.md` → Cloudflare steps (Workers Builds on `main-cloudflare`, secrets, custom domain, DNS cutover).
+- Out:
+  - Deploying, setting secrets, DNS changes (the user does these, following `docs/setup.md`).
+  - Shared, exact rate limiting (Cloudflare rate-limiting binding / KV): a later spec unless decided otherwise below.
+  - Upgrading Next.js 15 → 16.
+  - Any UI or content change.
+
+## Touches
+`package.json`, `package-lock.json`, `next.config.ts`, new `wrangler.jsonc`, `open-next.config.ts`, `cloudflare-env.d.ts`, `.gitignore`, `src/lib/siteUrl.ts`, `src/lib/ai/rateLimit.ts`, possibly `src/components/ProjectItem.tsx`, `src/app/projects/_components/ProjectCard.tsx`, `src/app/projects/[slug]/_components/SectionGallery.tsx` (images), `README.md`, `.env.example`, `CLAUDE.md`, `docs/setup.md`, `docs/conventions.md`.
+
+## What we already know (audit, 2026-11-05)
+- No `@vercel/*` packages, Vercel KV / Edge Config, `next/og`, middleware, or Node-only APIs (`fs`, `crypto`, native modules) in `src/`.
+- OpenAI (SSE streaming), Telegram and Google Calendar are plain `fetch`: Workers-compatible.
+- `/api/chat` streams an NDJSON `ReadableStream`: supported on Workers.
+- `/api/booking` uses `after()` from `next/server`: supported by OpenNext (`waitUntil`).
+- Both route handlers set `export const runtime = "nodejs"`: correct for OpenNext (edge runtime is not supported); keep it.
+- Case-study pages use `generateStaticParams`; `public/` is ~15 MB / 54 files (served as static assets, free).
+- `next/image` is used in 3 components.
+- In-memory rate limiter and cached Google token are per isolate on Workers (same weakness as per-instance on Vercel).
+- Working reference: `C:\Users\serg9\Documents\GitHub\real-estate` (`wrangler.jsonc`, `open-next.config.ts`, `next.config.ts`, `package.json` scripts) already deploys a Next.js app this way.
+
+## Slices
+
+### [ ] 1. OpenNext adapter builds and runs locally in workerd
+- **Build:** install `@opennextjs/cloudflare` (latest 1.x, ≥ 1.3.0) and `wrangler` (dev). Add `wrangler.jsonc` (`main: .open-next/worker.js`, `assets` → `.open-next/assets` with binding `ASSETS`, `compatibility_flags: ["nodejs_compat", "global_fetch_strictly_public"]`, current `compatibility_date`, `observability.enabled`), `open-next.config.ts` (`defineCloudflareConfig()`, no R2/KV cache), `initOpenNextCloudflareForDev()` in `next.config.ts`, scripts `preview`, `deploy`, `cf-typegen`, generated `cloudflare-env.d.ts`. Ignore `.open-next/`, `.wrangler/`, `.dev.vars` in `.gitignore`.
+- **Files:** `package.json`, `package-lock.json`, `wrangler.jsonc`, `open-next.config.ts`, `next.config.ts`, `cloudflare-env.d.ts`, `.gitignore`
+- **Agent:** backend · **Model:** sonnet
+- **Accept:**
+  - [ ] `npx tsc --noEmit`, `npm run lint`, `npm run build` are green.
+  - [ ] `npm run preview` builds and serves `/`, `/projects`, a `/projects/<slug>` page, `/services`, `/privacy`, `/terms` and the 404 page in workerd, with images and fonts loading.
+  - [ ] Without keys in `.dev.vars`, `POST /api/chat` and `GET /api/booking?type=<id>` return their 503 "not configured" JSON (proves both handlers run in workerd).
+  - [ ] The compressed worker size is recorded in the Log, with a note whether it fits the free plan (3 MiB).
+  - [ ] `npm run dev` still works.
+
+### [ ] 2. Runtime code without Vercel assumptions
+- **Build:** `src/lib/siteUrl.ts`: drop the `VERCEL_PROJECT_PRODUCTION_URL` fallback (keep it only if decided below); `BASE_URL` is the source, localhost in dev. `src/lib/ai/rateLimit.ts` → `getClientKey`: `cf-connecting-ip` first, then `x-forwarded-for`, `x-real-ip`. Update the comment that mentions serverless instances. Apply the image decision (Open questions → Images).
+- **Files:** `src/lib/siteUrl.ts`, `src/lib/ai/rateLimit.ts`, `next.config.ts` and/or `open-next.config.ts`, maybe the 3 image components
+- **Agent:** backend · **Model:** sonnet
+- **Accept:**
+  - [ ] No `VERCEL_` references left in `src/` (unless decided otherwise).
+  - [ ] Rate-limit key uses `cf-connecting-ip` when present.
+  - [ ] Case-study galleries and project cards render images in `npm run preview` with no layout shift and no failing `/_next/image` requests.
+  - [ ] Typecheck, lint, build and preview are green.
+
+### [ ] 3. Docs and deploy handover
+- **Build:** README: replace "Deploy on Vercel" with "Deploy on Cloudflare" (scripts, `.dev.vars`, Workers Builds). `.env.example`: drop the Vercel fallback note, explain `BASE_URL` must be set in Cloudflare, mention `.dev.vars` for `npm run preview`. `CLAUDE.md`: commands (`preview`, `deploy`, `cf-typegen`), hosting line. `docs/setup.md` → Cloudflare: step-by-step for the user (account and plan, Workers Builds connected to GitHub with production branch `main-cloudflare`, build/deploy commands, every runtime secret, `BASE_URL`, test on `*.workers.dev`, custom domain + DNS cutover, keep Vercel running until verified, then remove the domain from Vercel). Update the Status table.
+- **Files:** `README.md`, `.env.example`, `CLAUDE.md`, `docs/setup.md`
+- **Model:** haiku
+- **Accept:**
+  - [ ] Someone following only `docs/setup.md` can deploy `main-cloudflare` and set every secret the code reads (cross-checked against all `process.env.*` in `src/`).
+  - [ ] No instructions still point to Vercel as the target, except the cutover steps.
+
+### [ ] 4. Manual smoke test on Cloudflare (user)
+- **Build:** nothing to code. After the user deploys `main-cloudflare` to `*.workers.dev` with real secrets: chat streams an answer, `open_project` navigates, `save_lead` reaches Telegram, booking card loads slots and a test booking lands in Google Calendar and Telegram; test in English, Ukrainian and Russian.
+- **Accept:**
+  - [ ] User confirms each item above; results go into the Log.
+  - [ ] Free-plan CPU limit (10 ms) not hit in the Workers dashboard during the test, or the plan is switched to Workers Paid.
+
+## External needs
+- Cloudflare account; plan decision: Free ($0, 10 ms CPU/request, 3 MiB worker) or Workers Paid ($5/month, 30 s CPU, 10 MiB).
+- Workers Builds connected to the GitHub repo, production branch `main-cloudflare`.
+- Runtime secrets in Cloudflare: `OPENAI_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN`, optional `OPENAI_MODEL`, `GOOGLE_CALENDAR_ID`, `BOOKING_OWNER_EMAIL`, `GOOGLE_BUSY_CALENDAR_IDS`; variable `BASE_URL`.
+- Domain: DNS moved to Cloudflare (or a CNAME), then removed from Vercel.
+
+## Open questions
+- **Worker name** in `wrangler.jsonc` (it shows in the `*.workers.dev` URL). Recommended: `serhii-k-stack`.
+- **Images:** `images.unoptimized: true` (free, simplest; pre-compress files in `public/`) or the Cloudflare Images binding (optimized, billed above the free quota). Recommended: `unoptimized` now, pre-compress the largest images.
+- **Plan:** start on Free and switch if the size or CPU limit is hit, or start on Workers Paid. Recommended: Free for testing, Paid before sharing the site with clients.
+- **`VERCEL_PROJECT_PRODUCTION_URL` fallback:** remove now, or keep while `main` still deploys to Vercel. Recommended: remove on this branch (`main` keeps its own copy).
+- **Rate limiting:** keep the in-memory limiter (recommended for now) or add a Cloudflare rate-limiting binding in this spec.
+- **Current domain:** which domain serves the site today, and where its DNS is managed.
+
+## Log
+| Date | Slice | Result | Notes / files |
+| --- | --- | --- | --- |

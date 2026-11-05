@@ -6,6 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A Next.js (App Router) portfolio + lead-generation site for Serhii Kushnir, a freelance full-stack/mobile developer. It showcases project case studies and services, and converts visitors via an AI chat assistant ("Sonia") that can navigate the site, capture leads, and book calls on a real Google Calendar. See `PRODUCT.md` for product positioning/context and `README.md` for feature-level docs on the chat and booking systems.
 
+## Talking to the user
+
+Talk to the user in English: replies, reports, summaries and questions (in chat and in `AskUserQuestion`). Code, commits and docs are in English too.
+
+## Hosting
+
+Moving from Vercel to Cloudflare Workers (OpenNext adapter): spec `docs/specs/001-cloudflare-migration.md`. `main-cloudflare` is the integration and deploy branch; `main` stays on Vercel until the cutover. Agents never deploy, push, merge or touch the Cloudflare/Vercel accounts.
+
 ## Commands
 
 ```bash
@@ -65,6 +73,19 @@ App Router structure under `src/app/`: home (`page.tsx`), `/projects` and `/proj
 ### Path alias
 
 `@/*` maps to `src/*` (see `tsconfig.json`).
+
+## Specs and process
+
+All process documents live in `docs/` (index: `docs/README.md`):
+
+- `PRODUCT.md` / `DESIGN.md` (repo root): product positioning and the design system.
+- `docs/roadmap.md`: status of every spec and the build plan. The single source of truth for what's next.
+- `docs/process.md`: statuses, what a slice is, branches, models and delegation, the loop, Definition of Done.
+- `docs/conventions.md`: the rules every slice is checked against.
+- `docs/setup.md`: accounts, keys, hosting steps the user does by hand.
+- `docs/specs/`: one spec per task, split into slices (`_template.md` for new ones).
+
+`/run-implement` runs one step of the loop in `docs/process.md`. Key rules: before any code the agent reads the main docs, pins down the spec's purpose and aims, and asks all questions for the whole spec once, up front (a `draft` spec is moved to `ready` in that same round, after the user approves); then its slices run one after another without stopping (each verified with `npx tsc --noEmit`, `npm run lint`, `npm run build`, and committed on the spec's branch) and are reported once at the end; Opus orchestrates, Sonnet implements (`designer` for UI, `backend` for route handlers, integrations and hosting config), Haiku takes mechanical work; the user merges spec branches into `main-cloudflare` (PRs).
 
 ## Multilingual behavior
 
