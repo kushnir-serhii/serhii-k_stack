@@ -158,7 +158,7 @@ export const PROJECTS: Project[] = [
     imgSrcArr: [
       "/images/nuance.webp",
       "/images/nuance_mobile.webp",
-      "/images/nuance_social_translator_mobile.webp",
+      "/images/nuance_social_translator_mobile_x1.webp",
     ],
     summary:
       "An AI-powered workplace communication platform helping non-native English speakers master the social nuance of communication in global tech companies through realistic scenarios and instant AI feedback.",
