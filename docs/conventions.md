@@ -3,7 +3,7 @@
 Every slice is checked against these rules. They describe how the code is written today. If a rule gets in the way, raise it in the spec's open questions instead of breaking it quietly.
 
 ## Stack (don't add libraries without asking)
-Next.js 15 (App Router) · React 19 · TypeScript (strict) · Tailwind 3 · `motion` · `lottie-react` · npm. Hosting: Cloudflare Workers via `@opennextjs/cloudflare` + `wrangler` (spec 001). External services are called with plain `fetch`: no OpenAI, Telegram or Google SDKs.
+Next.js 16 (App Router) · React 19.3 · TypeScript (strict) · Tailwind 3 · `motion` · `lottie-react` · npm · ESLint flat config (`eslint .`). Hosting: Cloudflare Workers via `@opennextjs/cloudflare` + `wrangler` (spec 001). External services are called with plain `fetch`: no OpenAI, Telegram or Google SDKs.
 
 ## Files and folders
 

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A Next.js (App Router) portfolio + lead-generation site for Serhii Kushnir, a freelance full-stack/mobile developer. It showcases project case studies and services, and converts visitors via an AI chat assistant ("Sonia") that can navigate the site, capture leads, and book calls on a real Google Calendar. See `PRODUCT.md` for product positioning/context and `README.md` for feature-level docs on the chat and booking systems.
+A Next.js 16 (App Router) portfolio + lead-generation site for Serhii Kushnir, a freelance full-stack/mobile developer, running on Cloudflare Workers via the OpenNext adapter. It showcases project case studies and services, and converts visitors via an AI chat assistant ("Sonia") that can navigate the site, capture leads, and book calls on a real Google Calendar. See `PRODUCT.md` for product positioning/context and `README.md` for feature-level docs on the chat and booking systems.
 
 ## Talking to the user
 
@@ -12,7 +12,7 @@ Talk to the user in English: replies, reports, summaries and questions (in chat 
 
 ## Hosting
 
-Moving from Vercel to Cloudflare Workers (OpenNext adapter): spec `docs/specs/001-cloudflare-migration.md`. `main-cloudflare` is the integration and deploy branch; `main` stays on Vercel until the cutover. Agents never deploy, push, merge or touch the Cloudflare/Vercel accounts.
+The site runs on Cloudflare Workers via the OpenNext adapter (`@opennextjs/cloudflare`, Wrangler). Worker name `serhii-k-stack` (`wrangler.jsonc`). `main-cloudflare` is the deploy branch (Workers Builds deploys it automatically). `main` stays on Vercel until the cutover. Migration spec: `docs/specs/001-cloudflare-migration.md`. Agents never deploy, push, merge or touch the Cloudflare/Vercel accounts.
 
 ## Commands
 
@@ -20,7 +20,10 @@ Moving from Vercel to Cloudflare Workers (OpenNext adapter): spec `docs/specs/00
 npm run dev      # start dev server (localhost:3000)
 npm run build    # production build
 npm run start    # run production build
-npm run lint     # next lint (ESLint, flat config extending next/core-web-vitals + next/typescript)
+npm run preview  # build with OpenNext and run it in workerd (Workers runtime); reads .dev.vars
+npm run deploy   # build and deploy to Cloudflare (user only; agents never deploy)
+npm run cf-typegen # regenerate cloudflare-env.d.ts after adding an env var
+npm run lint     # eslint . (flat config extending next/core-web-vitals + next/typescript)
 ```
 
 There is no test suite configured in this repo (no test runner, no test files).
@@ -29,7 +32,7 @@ One-off script: `node scripts/google-auth.mjs` — obtains a Google OAuth refres
 
 ## Environment
 
-Copy `.env.example` to `.env.local`. Required keys: `OPENAI_API_KEY` (chat), `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID` (lead delivery), `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` / `GOOGLE_REFRESH_TOKEN` (calendar booking — optional; without these `/api/booking` returns 503 and the bot falls back to `save_lead`).
+Copy `.env.example` to `.env.local`. `npm run preview` also reads `.dev.vars` (same keys; its values override `.env.local`). Production secrets and variables are set in Cloudflare, not in files; see `docs/setup.md`. Required keys: `OPENAI_API_KEY` (chat), `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID` (lead delivery), `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` / `GOOGLE_REFRESH_TOKEN` (calendar booking — optional; without these `/api/booking` returns 503 and the bot falls back to `save_lead`).
 
 ## Architecture
 
