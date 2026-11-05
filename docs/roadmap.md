@@ -6,7 +6,7 @@ The single source of truth for what's next. `/run-implement` walks the **Plan** 
 
 | Spec | Title | Status | Depends on | Branch |
 | --- | --- | --- | --- | --- |
-| [001](specs/001-cloudflare-migration.md) | Move hosting from Vercel to Cloudflare Workers | draft | — | `cloudflare-migration` → PR into `main-cloudflare` |
+| [001](specs/001-cloudflare-migration.md) | Move hosting from Vercel to Cloudflare Workers | ready | — | `cloudflare-migration` → PR into `main-cloudflare` |
 
 ## Plan
 

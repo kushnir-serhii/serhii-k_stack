@@ -1,6 +1,6 @@
 # 001 — Move hosting from Vercel to Cloudflare Workers
 
-**Status:** draft · **Depends on:** — · **Route(s):** all, `/api/chat`, `/api/booking` · **Branch:** `cloudflare-migration` → PR into `main-cloudflare`
+**Status:** ready · **Depends on:** — · **Route(s):** all, `/api/chat`, `/api/booking` · **Branch:** `cloudflare-migration` → PR into `main-cloudflare`
 
 ## Goal
 The site, the chat assistant and calendar booking run on Cloudflare Workers (via the OpenNext adapter) and deploy from `main-cloudflare`, so the site can be used commercially for the business without Vercel Pro ($20/month). Hosting costs $0 (Free) or $5/month (Workers Paid).
@@ -48,7 +48,7 @@ Vercel's Hobby plan is for non-commercial personal use only; "advertising the sa
   - [ ] `npm run dev` still works.
 
 ### [ ] 2. Runtime code without Vercel assumptions
-- **Build:** `src/lib/siteUrl.ts`: drop the `VERCEL_PROJECT_PRODUCTION_URL` fallback (keep it only if decided below); `BASE_URL` is the source, localhost in dev. `src/lib/ai/rateLimit.ts` → `getClientKey`: `cf-connecting-ip` first, then `x-forwarded-for`, `x-real-ip`. Update the comment that mentions serverless instances. Apply the image decision (Open questions → Images).
+- **Build:** `src/lib/siteUrl.ts`: drop the `VERCEL_PROJECT_PRODUCTION_URL` fallback (keep it only if decided below); `BASE_URL` is the source, localhost in dev. `src/lib/ai/rateLimit.ts` → `getClientKey`: `cf-connecting-ip` first, then `x-forwarded-for`, `x-real-ip`. Update the comment that mentions serverless instances. Set `images: { unoptimized: true }` in `next.config.ts` (decided).
 - **Files:** `src/lib/siteUrl.ts`, `src/lib/ai/rateLimit.ts`, `next.config.ts` and/or `open-next.config.ts`, maybe the 3 image components
 - **Agent:** backend · **Model:** sonnet
 - **Accept:**
@@ -58,7 +58,7 @@ Vercel's Hobby plan is for non-commercial personal use only; "advertising the sa
   - [ ] Typecheck, lint, build and preview are green.
 
 ### [ ] 3. Docs and deploy handover
-- **Build:** README: replace "Deploy on Vercel" with "Deploy on Cloudflare" (scripts, `.dev.vars`, Workers Builds). `.env.example`: drop the Vercel fallback note, explain `BASE_URL` must be set in Cloudflare, mention `.dev.vars` for `npm run preview`. `CLAUDE.md`: commands (`preview`, `deploy`, `cf-typegen`), hosting line. `docs/setup.md` → Cloudflare: step-by-step for the user (account and plan, Workers Builds connected to GitHub with production branch `main-cloudflare`, build/deploy commands, every runtime secret, `BASE_URL`, test on `*.workers.dev`, custom domain + DNS cutover, keep Vercel running until verified, then remove the domain from Vercel). Update the Status table.
+- **Build:** README: replace "Deploy on Vercel" with "Deploy on Cloudflare" (scripts, `.dev.vars`, Workers Builds). `.env.example`: drop the Vercel fallback note, explain `BASE_URL` must be set in Cloudflare, mention `.dev.vars` for `npm run preview`. `CLAUDE.md`: commands (`preview`, `deploy`, `cf-typegen`), hosting line. `docs/setup.md` → Cloudflare: step-by-step for the user (account and plan, Workers Builds connected to GitHub with production branch `main-cloudflare`, build/deploy commands, every runtime secret, `BASE_URL`, test on `*.workers.dev`, buy a domain in Cloudflare Registrar and attach it to the Worker as a custom domain, update `BASE_URL`, keep Vercel running until the Cloudflare site is verified). Update the Status table.
 - **Files:** `README.md`, `.env.example`, `CLAUDE.md`, `docs/setup.md`
 - **Model:** haiku
 - **Accept:**
@@ -75,15 +75,15 @@ Vercel's Hobby plan is for non-commercial personal use only; "advertising the sa
 - Cloudflare account; plan decision: Free ($0, 10 ms CPU/request, 3 MiB worker) or Workers Paid ($5/month, 30 s CPU, 10 MiB).
 - Workers Builds connected to the GitHub repo, production branch `main-cloudflare`.
 - Runtime secrets in Cloudflare: `OPENAI_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN`, optional `OPENAI_MODEL`, `GOOGLE_CALENDAR_ID`, `BOOKING_OWNER_EMAIL`, `GOOGLE_BUSY_CALENDAR_IDS`; variable `BASE_URL`.
-- Domain: DNS moved to Cloudflare (or a CNAME), then removed from Vercel.
+- Domain: buy one in Cloudflare Registrar and attach it to the Worker as a custom domain; set `BASE_URL` to it.
 
 ## Open questions
-- **Worker name** in `wrangler.jsonc` (it shows in the `*.workers.dev` URL). Recommended: `serhii-k-stack`.
-- **Images:** `images.unoptimized: true` (free, simplest; pre-compress files in `public/`) or the Cloudflare Images binding (optimized, billed above the free quota). Recommended: `unoptimized` now, pre-compress the largest images.
-- **Plan:** start on Free and switch if the size or CPU limit is hit, or start on Workers Paid. Recommended: Free for testing, Paid before sharing the site with clients.
-- **`VERCEL_PROJECT_PRODUCTION_URL` fallback:** remove now, or keep while `main` still deploys to Vercel. Recommended: remove on this branch (`main` keeps its own copy).
-- **Rate limiting:** keep the in-memory limiter (recommended for now) or add a Cloudflare rate-limiting binding in this spec.
-- **Current domain:** which domain serves the site today, and where its DNS is managed.
+- **Decided (2026-11-05):** worker name `serhii-k-stack`.
+- **Decided:** images use `images.unoptimized: true`. No compression step: the files in `public/images` are already prepared.
+- **Decided:** start on the Free plan; switch to Workers Paid ($5/month) if the worker is over 3 MiB or the smoke test hits the CPU limit, before sharing the site with clients.
+- **Decided:** remove the `VERCEL_PROJECT_PRODUCTION_URL` fallback on this branch (`main` keeps its own copy).
+- **Decided:** keep the in-memory rate limiter; shared rate limiting is a later spec.
+- **Decided:** no current custom domain. A new domain is bought through Cloudflare Registrar (DNS is then on Cloudflare automatically) and attached to the Worker as a custom domain; until then the site runs on `serhii-k-stack.<account>.workers.dev`. No DNS move and no Vercel domain removal.
 
 ## Log
 | Date | Slice | Result | Notes / files |
