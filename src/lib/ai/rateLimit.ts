@@ -1,10 +1,10 @@
 /**
  * In-memory sliding-window rate limiter.
  *
- * Note: serverless instances do not share memory, so the effective limit is
- * per warm instance. That is fine for portfolio traffic — it stops a single
- * visitor hammering the endpoint. Swap for Upstash Redis if this ever needs
- * to be exact.
+ * Note: on Cloudflare Workers memory is per isolate, so the limit is
+ * best-effort per isolate. That is fine for portfolio traffic — it stops a
+ * single visitor hammering the endpoint. Shared rate limiting (Cloudflare
+ * rate-limiting binding / KV) is a later spec.
  */
 const WINDOW_MS = 60_000;
 const MAX_REQUESTS = 12;
@@ -38,6 +38,8 @@ export function checkRateLimit(
 }
 
 export function getClientKey(req: Request): string {
+  const cf = req.headers.get("cf-connecting-ip");
+  if (cf) return cf.trim();
   const forwarded = req.headers.get("x-forwarded-for");
   if (forwarded) return forwarded.split(",")[0].trim();
   return req.headers.get("x-real-ip") ?? "unknown";
