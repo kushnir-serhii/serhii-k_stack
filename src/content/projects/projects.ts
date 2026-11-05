@@ -255,7 +255,7 @@ export const PROJECTS: Project[] = [
     role: "Full-Stack Developer",
     year: "2026",
     status: "wip",
-    url: null,
+    url: "https://photografer-portfolio-chi.vercel.app/",
     client: "Photography / Creative services",
     duration: "3 weeks (ongoing)",
     team: "Solo engineer",
