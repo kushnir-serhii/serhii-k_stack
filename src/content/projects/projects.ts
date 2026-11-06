@@ -142,6 +142,66 @@ export const PROJECTS: Project[] = [
       `As a Full Stack Engineer, I architected and built the entire monorepo from scratch — designing 40+ Strapi content types, implementing a type-safe data layer with custom transform functions (raw Strapi → typed React props), and building all section components with mobile-first responsive layouts. On the frontend I integrated Embla Carousel, Recharts fee visualizations, react-archer diagrams, and form validation with React Hook Form + Zod. The backend is deployed on Railway (PostgreSQL) and the frontend on Vercel, with Cloudinary handling media delivery.`,
     ],
   },
+  // Robin Hale — photographer portfolio
+  {
+    slug: "robin-hale",
+    title: "Robin Hale: Demo Website for Photographers",
+    subtitle:
+      "Ready-to-adapt photographer site with booking, price calculator and client gallery",
+    role: "Full-Stack Developer",
+    year: "2026",
+    status: "wip",
+    url: "https://photografer-portfolio-chi.vercel.app/",
+    client: "Photography / Creative services",
+    duration: "3 weeks (ongoing)",
+    team: "Solo engineer",
+    techStack: "Astro, TypeScript, CSS, Playwright, JSON-LD / schema.org",
+    imgSrcArr: [
+      "/images/photo_hero_x1.webp",
+      "/images/photo_gallery_x1.webp",
+      "/images/photo_calc_price_x1.webp",
+      "/images/photo_3_mobile_x1.webp",
+    ],
+    summary:
+      "A demo website for photographers, shown as a London brand photographer's site, that turns visitors into booked shoots: transparent prices with a live quote calculator, a brief that arrives already filled in, local search pages, and a private client gallery for picking selects.",
+    problem:
+      'Photographers lose time and bookings to the same problems: vague "how much?" emails, briefs that arrive half-written, clients who can\'t find them on Google, and a separate paid gallery service just to get photo approvals. A typical template portfolio shows the pictures but does nothing to get the shoot booked.',
+    approach:
+      "I built the site around the path a client takes to a booking. Work is shown first and big, filtered by sector, with video next to stills. Prices and usage terms are in the open, and a calculator lets the client build their own quote. Choosing a package fills in the brief automatically, an availability calendar shows free dates, and phone, WhatsApp or the form are always one tap away. Every name, price, project and photo lives in one data file, so the site can be re-dressed for a real photographer in days, not weeks.",
+    outcome: [
+      {
+        val: "1-click",
+        label: "From package to a pre-filled brief or WhatsApp message",
+      },
+      {
+        val: "9",
+        label: "Local area pages for search (London districts and UK cities)",
+      },
+      { val: "0", label: "Backend or database needed — fully static and fast" },
+    ],
+    build: [
+      {
+        title: "Live price calculator",
+        body: "The client picks a package, adds extras like extra usage, retouching per image, short video or extra hours, and sees the total update instantly. One click sends the quote to the photographer — it arrives already inside the brief and the WhatsApp message.",
+      },
+      {
+        title: "Booking flow with one tap to a human",
+        body: '"Book this" on any package opens a brief that is already filled in. An availability calendar shows booked and half-free days, and a quick-contact panel offers call, WhatsApp, email or the full brief from any page, on any phone.',
+      },
+      {
+        title: "Found locally on Google",
+        body: 'A page for each London area and UK city served, structured data for Google (business details, prices per package, FAQ, breadcrumbs), a service-area map, sitemap and robots.txt — so searches like "brand photographer Shoreditch" lead to the site.',
+      },
+      {
+        title: "Private client gallery",
+        body: "Clients open their gallery with a code, mark their favourite shots, filter to just their selects, and send the selection back for retouching — showing the photographer they can drop a separate gallery subscription.",
+      },
+    ],
+    description: [
+      `Robin Hale is a demo website I built to show photographers what their own site could do. It is dressed as the site of a brand and commercial photographer in London (the name, clients and photos are placeholders), and it works like the real thing: it doesn't just show beautiful work, it answers the client's questions — price, usage rights, turnaround, availability — and gets the shoot booked with less back-and-forth.`,
+      `I designed and built the whole site: a dark, studio-style design system with subtle motion, a gallery and film reel, transparent rates with a live calculator, a booking flow with a pre-filled brief and WhatsApp messages, local SEO pages with structured data, and a private client gallery for photo selection. Every piece of content is data, not code, so a real photographer's name, prices, areas and photos can be swapped in quickly. Automated Playwright checks test every page on desktop and phone before each change ships.`,
+    ],
+  },
   // Nuance
   {
     slug: "nuance",
@@ -244,60 +304,6 @@ export const PROJECTS: Project[] = [
     description: [
       `Meridian shows the kind of online shop I build for product brands: a coffee company selling both specialty coffee and brewing equipment, from a €48 dripper to a €2,890 espresso machine. Each product type gets pages designed around how its customers decide to buy, and a subscription turns one-time buyers into regular income.`,
       `I designed and built the whole shop from scratch — catalog, product pages, subscription, cart, checkout, About and legal pages. It is a demo, so payments are switched off, but the same foundation can be connected to real payments, delivery and a second language for your business.`,
-    ],
-  },
-  // Robin Hale — photographer portfolio
-  {
-    slug: "robin-hale",
-    title: "Robin Hale: Demo Website for Photographers",
-    subtitle:
-      "Ready-to-adapt photographer site with booking, price calculator and client gallery",
-    role: "Full-Stack Developer",
-    year: "2026",
-    status: "wip",
-    url: "https://photografer-portfolio-chi.vercel.app/",
-    client: "Photography / Creative services",
-    duration: "3 weeks (ongoing)",
-    team: "Solo engineer",
-    techStack: "Astro, TypeScript, CSS, Playwright, JSON-LD / schema.org",
-    imgSrcArr: [
-      "/images/photo_hero_x1.webp",
-      "/images/photo_gallery_x1.webp",
-      "/images/photo_calc_price_x1.webp",
-      "/images/photo_3_mobile_x1.webp",
-    ],
-    summary:
-      "A demo website for photographers, shown as a London brand photographer's site, that turns visitors into booked shoots: transparent prices with a live quote calculator, a brief that arrives already filled in, local search pages, and a private client gallery for picking selects.",
-    problem:
-      "Photographers lose time and bookings to the same problems: vague \"how much?\" emails, briefs that arrive half-written, clients who can't find them on Google, and a separate paid gallery service just to get photo approvals. A typical template portfolio shows the pictures but does nothing to get the shoot booked.",
-    approach:
-      "I built the site around the path a client takes to a booking. Work is shown first and big, filtered by sector, with video next to stills. Prices and usage terms are in the open, and a calculator lets the client build their own quote. Choosing a package fills in the brief automatically, an availability calendar shows free dates, and phone, WhatsApp or the form are always one tap away. Every name, price, project and photo lives in one data file, so the site can be re-dressed for a real photographer in days, not weeks.",
-    outcome: [
-      { val: "1-click", label: "From package to a pre-filled brief or WhatsApp message" },
-      { val: "9", label: "Local area pages for search (London districts and UK cities)" },
-      { val: "0", label: "Backend or database needed — fully static and fast" },
-    ],
-    build: [
-      {
-        title: "Live price calculator",
-        body: "The client picks a package, adds extras like extra usage, retouching per image, short video or extra hours, and sees the total update instantly. One click sends the quote to the photographer — it arrives already inside the brief and the WhatsApp message.",
-      },
-      {
-        title: "Booking flow with one tap to a human",
-        body: "\"Book this\" on any package opens a brief that is already filled in. An availability calendar shows booked and half-free days, and a quick-contact panel offers call, WhatsApp, email or the full brief from any page, on any phone.",
-      },
-      {
-        title: "Found locally on Google",
-        body: "A page for each London area and UK city served, structured data for Google (business details, prices per package, FAQ, breadcrumbs), a service-area map, sitemap and robots.txt — so searches like \"brand photographer Shoreditch\" lead to the site.",
-      },
-      {
-        title: "Private client gallery",
-        body: "Clients open their gallery with a code, mark their favourite shots, filter to just their selects, and send the selection back for retouching — showing the photographer they can drop a separate gallery subscription.",
-      },
-    ],
-    description: [
-      `Robin Hale is a demo website I built to show photographers what their own site could do. It is dressed as the site of a brand and commercial photographer in London (the name, clients and photos are placeholders), and it works like the real thing: it doesn't just show beautiful work, it answers the client's questions — price, usage rights, turnaround, availability — and gets the shoot booked with less back-and-forth.`,
-      `I designed and built the whole site: a dark, studio-style design system with subtle motion, a gallery and film reel, transparent rates with a live calculator, a booking flow with a pre-filled brief and WhatsApp messages, local SEO pages with structured data, and a private client gallery for photo selection. Every piece of content is data, not code, so a real photographer's name, prices, areas and photos can be swapped in quickly. Automated Playwright checks test every page on desktop and phone before each change ships.`,
     ],
   },
   // Catoshi
