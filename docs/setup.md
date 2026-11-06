@@ -61,3 +61,7 @@ Written by spec 001 slice 3. The Worker is named `serhii-k-stack` (`wrangler.jso
 8. **Vercel.** Keep Vercel running until the Cloudflare site is verified. Afterwards, decide about `main` vs `main-cloudflare` and about the Vercel project.
 
 **Manual deploy from your machine (you only, never an agent):** `npx wrangler login`, once. Then `npm run deploy`. This builds with OpenNext and deploys the Worker.
+
+> **Warning: prefer Workers Builds over a manual deploy.** A local OpenNext build copies the values from `.env.local` (and other `.env*` files) into `.open-next/cloudflare/next-env.mjs`, so `npm run deploy` from your machine bundles your real keys into the Worker code instead of keeping them only in Cloudflare's secret store. Workers Builds has no `.env.local`, so its builds use only the secrets set in the dashboard. If you must deploy by hand, temporarily move `.env.local` out of the project first.
+>
+> The same file is why `.open-next/` and `.wrangler/` must never be committed: on 2026-11-06 a local commit of `.open-next/` on `main-cloudflare` was blocked by GitHub secret scanning (OpenAI key, Google OAuth client ID and secret) and removed before it was pushed. Both folders are in `.gitignore` from spec 001 slice 1 on.

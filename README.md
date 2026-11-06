@@ -34,7 +34,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The site runs on Cloudflare Workers. The Next.js 16 app is built with the [OpenNext adapter](https://opennext.js.org/cloudflare) (`@opennextjs/cloudflare`) and deployed with Wrangler. The Worker is named `serhii-k-stack` (see `wrangler.jsonc`).
 
 - **Preview the production build locally:** `npm run preview` builds the app and runs it in workerd, the Workers runtime. Put the runtime keys in `.dev.vars` (same names as in `.env.example`, never committed). Values in `.dev.vars` override `.env.local`.
-- **Deploy by hand:** `npm run deploy` (needs `npx wrangler login` once).
+- **Deploy by hand:** `npm run deploy` (needs `npx wrangler login` once). Avoid it: a local build bundles the keys from `.env.local` into the Worker. Prefer Workers Builds (see [docs/setup.md](docs/setup.md)).
 - **Deploy automatically:** pushes to `main-cloudflare` are built and deployed by Workers Builds.
 
 The step-by-step setup (accounts, build settings, variables, custom domain) is in [docs/setup.md](docs/setup.md).
