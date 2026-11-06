@@ -31,12 +31,21 @@ export async function generateMetadata({
 
   if (!project) return {};
 
-  // OG/Twitter images come from the sibling opengraph-image.tsx.
-  return pageMetadata({
-    title: `${project.subtitle ?? project.title} — Case Study`,
+  const title = `${project.subtitle ?? project.title} — Case Study`;
+  // Branded card rendered by the sibling opengraph-image.tsx.
+  const image = {
+    url: `/projects/${project.slug}/opengraph-image`,
+    width: 1200,
+    height: 630,
+    alt: `${project.subtitle ?? project.title} — case study by Serhii Kushnir`,
+  };
+  const meta = pageMetadata({
+    title,
     description: project.summary,
     path: `/projects/${project.slug}`,
+    images: [image],
   });
+  return { ...meta, twitter: { ...meta.twitter, images: [image.url] } };
 }
 
 export default async function ProjectDetailPage({
