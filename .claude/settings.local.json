@@ -3,7 +3,8 @@
     "allow": [
       "WebFetch(domain:api.anthropic.com)",
       "Bash(next build *)",
-      "Bash(npx next *)"
+      "Bash(npx next *)",
+      "ClaudeInChromeDomain(localhost:3000)"
     ]
   },
   "hooks": {

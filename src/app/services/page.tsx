@@ -6,16 +6,55 @@ import {
   engagementModels,
   servicesFaq,
 } from "@/content";
+import { JsonLd } from "@/components/JsonLd";
+import { absoluteUrl, breadcrumbJsonLd, pageMetadata, refs } from "@/lib/seo";
 import { ContactCta } from "@/components/ContactCta";
 import { ProjectBreadcrumb } from "../projects/[slug]/_components/ProjectBreadcrumb";
 import { ServiceRow } from "./_components/ServiceRow";
 import { FaqItem } from "./_components/FaqItem";
 
-export const metadata: Metadata = {
-  title: "Services — Serhii Kushnir",
+export const metadata: Metadata = pageMetadata({
+  title: "Services — Web, Mobile & AI Development",
   description:
-    "Websites, mobile apps, AI assistants and automation for businesses and founders — from idea to release. Clear scope, fixed price or hourly, free intro call.",
-};
+    "Websites, iOS/Android apps, AI assistants, automation, backend integrations and SEO for businesses and founders — from idea to release. Clear scope, fixed price or hourly, free intro call.",
+  path: "/services",
+});
+
+const jsonLd = [
+  ...services.map((s) => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": absoluteUrl(`/services#${s.slug}`),
+    name: s.service.trim(),
+    serviceType: s.service.trim(),
+    description: `${s.description} ${s.details}`,
+    url: absoluteUrl(`/services#${s.slug}`),
+    provider: { "@id": refs.BUSINESS_ID },
+    areaServed: "Worldwide",
+    availableLanguage: ["English", "Ukrainian", "Russian"],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: `${s.service.trim()} deliverables`,
+      itemListElement: s.deliverables.map((d) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: d },
+      })),
+    },
+  })),
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: servicesFaq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
+  breadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+  ]),
+];
 
 const CHIP =
   "inline-flex items-center rounded-full border border-grey_300 px-3 py-1.5 font-mono text-label uppercase text-grey_400 transition-colors hover:border-black_900 hover:text-black_900 focus-ring";
@@ -23,6 +62,7 @@ const CHIP =
 export default function ServicesPage() {
   return (
     <main className="animate-page-in">
+      <JsonLd data={jsonLd} />
       <div className="container mx-auto max-w-[1200px] px-4 pb-24">
         <ProjectBreadcrumb
           title="Services"

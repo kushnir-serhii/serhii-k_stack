@@ -91,10 +91,10 @@ export const services: Service[] = [
     description:
       "Automating repetitive work — lead handling, support, content and data processing — to save time and cut costs.",
     details:
-      "If your team copies data between tools, answers the same emails or prepares the same reports every week, that work can run by itself. I find these tasks and automate them with AI.",
+      "If your team copies data between tools, answers the same emails or prepares the same reports every week, that work can run by itself. I find these tasks and automate them with n8n and AI.",
     deliverables: [
       "Audit of repetitive tasks in your process",
-      "Automated workflows between your tools",
+      "n8n workflows connecting your tools (CRM, email, Sheets, Telegram)",
       "AI processing of emails, documents and data",
       "Reports and alerts delivered automatically",
     ],
@@ -106,16 +106,23 @@ export const services: Service[] = [
     iconId: "icon-search",
     service: "SEO & Visibility",
     description:
-      "Technical SEO, structured data and speed fixes so your site ranks higher and brings more visitors.",
+      "Technical SEO, structured data, speed fixes and Google Maps listing so your business ranks higher and brings more visitors.",
     details:
-      "Search engines and AI assistants must understand your site before they can recommend it. I fix the technical side so more of the right people find you.",
+      "Search engines, maps and AI assistants must understand your business before they can recommend it. I fix the technical side and set up your local presence so more of the right people find you.",
     deliverables: [
       "Technical SEO audit and fixes",
       "Meta tags, sitemaps, structured data",
       "Core Web Vitals improvements",
       "Multi-language pages",
+      "Google Maps / Business Profile setup (optional)",
     ],
-    stack: ["Next.js", "Schema.org", "Search Console", "Lighthouse"],
+    stack: [
+      "Next.js",
+      "Schema.org",
+      "Search Console",
+      "Google Business Profile",
+      "Lighthouse",
+    ],
     relatedProjects: ["calmisu", "cloudbitpay"],
   },
   {
@@ -134,22 +141,22 @@ export const services: Service[] = [
     ],
     stack: ["React", "Next.js", "TypeScript", "Lighthouse"],
   },
-  {
-    slug: "no-code",
-    iconId: "icon-mouse_pointer",
-    service: "No-Code / Low-Code",
-    description:
-      "Quick launches on no-code and low-code platforms when speed and budget matter more than custom code.",
-    details:
-      "Need to test an idea this month? A no-code or low-code build gets you live quickly and cheaply, and can be moved to custom code later when it grows.",
-    deliverables: [
-      "MVP or landing page in days, not months",
-      "Forms, databases and automations without code",
-      "Custom code only where it's really needed",
-      "Clear path to a custom build later",
-    ],
-    stack: ["Webflow", "Framer", "Supabase", "n8n"],
-  },
+  // {
+  //   slug: "no-code",
+  //   iconId: "icon-mouse_pointer",
+  //   service: "No-Code / Low-Code",
+  //   description:
+  //     "Quick launches on no-code and low-code platforms when speed and budget matter more than custom code.",
+  //   details:
+  //     "Need to test an idea this month? A no-code or low-code build gets you live quickly and cheaply, and can be moved to custom code later when it grows.",
+  //   deliverables: [
+  //     "MVP or landing page in days, not months",
+  //     "Forms, databases and automations without code",
+  //     "Custom code only where it's really needed",
+  //     "Clear path to a custom build later",
+  //   ],
+  //   stack: ["Webflow", "Framer", "Supabase", "n8n"],
+  // },
 ];
 
 export const workProcess = [
