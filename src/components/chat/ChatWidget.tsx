@@ -6,7 +6,6 @@ import { BOT_CONFIG } from "@/content/bot/bot";
 import { useChatBot } from "./useChatBot";
 import { BookingCard } from "./BookingCard";
 import { OPEN_CHAT_EVENT, type OpenChatDetail } from "@/lib/openChat";
-import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 function BotIcon({ className = "" }: { className?: string }) {
   return (
@@ -58,7 +57,6 @@ export function ChatWidget() {
   const [draft, setDraft] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const { items, isStreaming, error, limitReached, send, reset } = useChatBot();
-  const prefersReducedMotion = usePrefersReducedMotion();
   const hasDraft = draft.trim().length > 0;
   const hasConversation = items.length > 1;
 
@@ -83,19 +81,52 @@ export function ChatWidget() {
   const panelRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const contentRef = useRef<HTMLDivElement>(null);
+  // Whether the list should follow new content. Decided from the visitor's
+  // scroll position *before* content grows (measuring after a big reply lands
+  // would wrongly look like they scrolled up).
+  const stickToBottomRef = useRef(true);
+
+  // Follow the bottom whenever the content changes size — streamed text,
+  // a booking card loading its slots, the typing indicator, etc.
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    // Don't yank the view down while the visitor is reading earlier
-    // messages, and skip the smooth-scroll animation while streaming
-    // (it would otherwise re-trigger on every batched text update).
-    const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
-    if (distanceFromBottom > 120) return;
-    el.scrollTo({
-      top: el.scrollHeight,
-      behavior: isStreaming || prefersReducedMotion ? "auto" : "smooth",
+    const list = scrollRef.current;
+    const content = contentRef.current;
+    if (!open || !list || !content) return;
+
+    stickToBottomRef.current = true;
+    const toBottom = () => {
+      list.scrollTop = list.scrollHeight;
+    };
+    toBottom();
+
+    const onScroll = () => {
+      const distance = list.scrollHeight - list.scrollTop - list.clientHeight;
+      stickToBottomRef.current = distance < 80;
+    };
+    list.addEventListener("scroll", onScroll, { passive: true });
+
+    const ro = new ResizeObserver(() => {
+      if (stickToBottomRef.current) toBottom();
     });
-  }, [items, isStreaming, prefersReducedMotion]);
+    ro.observe(content);
+    ro.observe(list);
+
+    return () => {
+      list.removeEventListener("scroll", onScroll);
+      ro.disconnect();
+    };
+  }, [open]);
+
+  // Sending a message always jumps back to the latest exchange.
+  useEffect(() => {
+    const last = items[items.length - 1];
+    if (last?.kind === "message" && last.role === "user") {
+      stickToBottomRef.current = true;
+      const list = scrollRef.current;
+      if (list) list.scrollTop = list.scrollHeight;
+    }
+  }, [items]);
 
   useEffect(() => {
     if (open) inputRef.current?.focus();
@@ -362,8 +393,9 @@ export function ChatWidget() {
 
             <div
               ref={scrollRef}
-              className="flex-1 space-y-3 overflow-y-auto overscroll-contain px-4 py-4"
+              className="flex-1 overflow-y-auto overscroll-contain px-4 py-4"
             >
+              <div ref={contentRef} className="space-y-3">
               {items.map((item) => {
                 if (item.kind === "message") {
                   const mine = item.role === "user";
@@ -464,6 +496,7 @@ export function ChatWidget() {
                   {error}
                 </div>
               )}
+              </div>
             </div>
 
             <form
