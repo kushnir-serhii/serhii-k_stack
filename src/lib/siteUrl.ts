@@ -1,15 +1,11 @@
 /**
  * Absolute origin of the site, used for metadata (canonical/Open Graph URLs).
- * BASE_URL wins; on Vercel it falls back to the project's production domain,
- * which Vercel injects at build time, so a missing env var never ships
- * localhost links to production.
+ * BASE_URL is the only source; it must be set in Cloudflare for both build and
+ * runtime. There is no platform fallback, so without it links point at
+ * http://localhost:3000.
  */
 function resolveSiteUrl(): string {
-  if (process.env.BASE_URL) return process.env.BASE_URL;
-  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
-    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
-  }
-  return "http://localhost:3000";
+  return process.env.BASE_URL || "http://localhost:3000";
 }
 
 export const SITE_URL = resolveSiteUrl().replace(/\/+$/, "");

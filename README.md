@@ -29,11 +29,15 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy on Cloudflare
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The site runs on Cloudflare Workers. The Next.js 16 app is built with the [OpenNext adapter](https://opennext.js.org/cloudflare) (`@opennextjs/cloudflare`) and deployed with Wrangler. The Worker is named `serhii-k-stack` (see `wrangler.jsonc`).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Preview the production build locally:** `npm run preview` builds the app and runs it in workerd, the Workers runtime. Put the runtime keys in `.dev.vars` (same names as in `.env.example`, never committed). Values in `.dev.vars` override `.env.local`.
+- **Deploy by hand:** `npm run deploy` (needs `npx wrangler login` once). Avoid it: a local build bundles the keys from `.env.local` into the Worker. Prefer Workers Builds (see [docs/setup.md](docs/setup.md)).
+- **Deploy automatically:** pushes to `main-cloudflare` are built and deployed by Workers Builds.
+
+The step-by-step setup (accounts, build settings, variables, custom domain) is in [docs/setup.md](docs/setup.md).
 
 ## AI assistant (`/api/chat`)
 

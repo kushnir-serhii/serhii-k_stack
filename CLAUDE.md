@@ -4,7 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A Next.js (App Router) portfolio + lead-generation site for Serhii Kushnir, a freelance full-stack/mobile developer. It showcases project case studies and services, and converts visitors via an AI chat assistant ("Sonia") that can navigate the site, capture leads, and book calls on a real Google Calendar. See `PRODUCT.md` for product positioning/context and `README.md` for feature-level docs on the chat and booking systems.
+A Next.js 16 (App Router) portfolio + lead-generation site for Serhii Kushnir, a freelance full-stack/mobile developer, running on Cloudflare Workers via the OpenNext adapter. It showcases project case studies and services, and converts visitors via an AI chat assistant ("Sonia") that can navigate the site, capture leads, and book calls on a real Google Calendar. See `PRODUCT.md` for product positioning/context and `README.md` for feature-level docs on the chat and booking systems.
+
+## Talking to the user
+
+Talk to the user in English: replies, reports, summaries and questions (in chat and in `AskUserQuestion`). Code, commits and docs are in English too.
+
+## Hosting
+
+The site runs on Cloudflare Workers via the OpenNext adapter (`@opennextjs/cloudflare`, Wrangler). Worker name `serhii-k-stack` (`wrangler.jsonc`). `main-cloudflare` is the deploy branch (Workers Builds deploys it automatically). `main` stays on Vercel until the cutover. Migration spec: `docs/specs/001-cloudflare-migration.md`. Agents never deploy, push, merge or touch the Cloudflare/Vercel accounts.
 
 ## Commands
 
@@ -12,7 +20,10 @@ A Next.js (App Router) portfolio + lead-generation site for Serhii Kushnir, a fr
 npm run dev      # start dev server (localhost:3000)
 npm run build    # production build
 npm run start    # run production build
-npm run lint     # next lint (ESLint, flat config extending next/core-web-vitals + next/typescript)
+npm run preview  # build with OpenNext and run it in workerd (Workers runtime); reads .dev.vars
+npm run deploy   # build and deploy to Cloudflare (user only; agents never deploy)
+npm run cf-typegen # regenerate cloudflare-env.d.ts after adding an env var
+npm run lint     # eslint . (flat config extending next/core-web-vitals + next/typescript)
 ```
 
 There is no test suite configured in this repo (no test runner, no test files).
@@ -21,7 +32,7 @@ One-off script: `node scripts/google-auth.mjs` — obtains a Google OAuth refres
 
 ## Environment
 
-Copy `.env.example` to `.env.local`. Required keys: `OPENAI_API_KEY` (chat), `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID` (lead delivery), `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` / `GOOGLE_REFRESH_TOKEN` (calendar booking — optional; without these `/api/booking` returns 503 and the bot falls back to `save_lead`).
+Copy `.env.example` to `.env.local`. `npm run preview` also reads `.dev.vars` (same keys; its values override `.env.local`). Production secrets and variables are set in Cloudflare, not in files; see `docs/setup.md`. Required keys: `OPENAI_API_KEY` (chat), `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID` (lead delivery), `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` / `GOOGLE_REFRESH_TOKEN` (calendar booking — optional; without these `/api/booking` returns 503 and the bot falls back to `save_lead`).
 
 ## Architecture
 
@@ -65,6 +76,19 @@ App Router structure under `src/app/`: home (`page.tsx`), `/projects` and `/proj
 ### Path alias
 
 `@/*` maps to `src/*` (see `tsconfig.json`).
+
+## Specs and process
+
+All process documents live in `docs/` (index: `docs/README.md`):
+
+- `PRODUCT.md` / `DESIGN.md` (repo root): product positioning and the design system.
+- `docs/roadmap.md`: status of every spec and the build plan. The single source of truth for what's next.
+- `docs/process.md`: statuses, what a slice is, branches, models and delegation, the loop, Definition of Done.
+- `docs/conventions.md`: the rules every slice is checked against.
+- `docs/setup.md`: accounts, keys, hosting steps the user does by hand.
+- `docs/specs/`: one spec per task, split into slices (`_template.md` for new ones).
+
+`/run-implement` runs one step of the loop in `docs/process.md`. Key rules: before any code the agent reads the main docs, pins down the spec's purpose and aims, and asks all questions for the whole spec once, up front (a `draft` spec is moved to `ready` in that same round, after the user approves); then its slices run one after another without stopping (each verified with `npx tsc --noEmit`, `npm run lint`, `npm run build`, and committed on the spec's branch) and are reported once at the end; Opus orchestrates, Sonnet implements (`designer` for UI, `backend` for route handlers, integrations and hosting config), Haiku takes mechanical work; the user merges spec branches into `main-cloudflare` (PRs).
 
 ## Multilingual behavior
 
