@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PROJECTS } from "../../../content";
+import { PROJECTS } from "@/content";
+import { JsonLd } from "@/components/JsonLd";
+import { absoluteUrl, breadcrumbJsonLd, pageMetadata, refs } from "@/lib/seo";
 import { ScrollProgress } from "./_components/ScrollProgress";
 import { ProjectBreadcrumb } from "./_components/ProjectBreadcrumb";
 import { ProjectHero } from "./_components/ProjectHero";
@@ -29,19 +31,12 @@ export async function generateMetadata({
 
   if (!project) return {};
 
-  const title = `${project.subtitle ?? project.title} — Case study · Serhii Kushnir`;
-  const description = project.summary;
-  const image = project.imgSrcArr[0];
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      images: image ? [{ url: image, width: 1200, height: 630 }] : undefined,
-    },
-  };
+  // OG/Twitter images come from the sibling opengraph-image.tsx.
+  return pageMetadata({
+    title: `${project.subtitle ?? project.title} — Case Study`,
+    description: project.summary,
+    path: `/projects/${project.slug}`,
+  });
 }
 
 export default async function ProjectDetailPage({
@@ -57,9 +52,36 @@ export default async function ProjectDetailPage({
   const idx = PROJECTS.findIndex((p) => p.slug === slug);
   const prev = PROJECTS[idx - 1] ?? null;
   const next = PROJECTS[idx + 1] ?? null;
+  const pageUrl = absoluteUrl(`/projects/${project.slug}`);
+
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "@id": `${pageUrl}#work`,
+      name: project.title,
+      headline: project.subtitle ?? project.title,
+      abstract: project.summary,
+      description: project.approach ?? project.summary,
+      url: pageUrl,
+      image: project.imgSrcArr.map((src) => absoluteUrl(src)),
+      dateCreated: project.year,
+      creator: { "@id": refs.PERSON_ID },
+      author: { "@id": refs.PERSON_ID },
+      keywords: project.techStack,
+      inLanguage: "en",
+      ...(project.url ? { sameAs: project.url } : {}),
+    },
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Projects", path: "/projects" },
+      { name: project.subtitle ?? project.title, path: `/projects/${project.slug}` },
+    ]),
+  ];
 
   return (
     <main className="animate-page-in">
+      <JsonLd data={jsonLd} />
       <ScrollProgress />
 
       <div className="container mx-auto px-4 max-w-[1200px]">
