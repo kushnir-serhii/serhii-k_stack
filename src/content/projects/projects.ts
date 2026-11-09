@@ -566,14 +566,13 @@ export const PROJECTS: Project[] = [
       "/images/apeing_2_phones.webp",
     ],
     summary:
-      "8 pages of Solana analytics: token discovery, copy trading, wallet ranking, PnL, ApeingRooms — 5 languages.",
+      "8 pages of Solana analytics: token discovery, copy trading, wallet ranking, PnL, ApeingRooms.",
     problem:
-      "Solana traders needed a single platform combining token discovery, copy trading, smart wallet tracking, and community rooms — with professional-grade analytics and multi-language support across 5 locales.",
+      "Solana traders needed a single platform combining token discovery, copy trading, smart wallet tracking, and community rooms — with professional-grade analytics.",
     approach:
       "Built the frontend from scratch with Next.js 15 and Turbopack, implemented complex data tables via TanStack, integrated ApexCharts and Chart.js for portfolio visualizations, and embedded real-time charts via the gmgn.cc API.",
     outcome: [
       { val: "8", label: "Feature pages" },
-      { val: "5", label: "Languages" },
       { val: "15+", label: "Chart types" },
     ],
     build: [
@@ -591,7 +590,7 @@ export const PROJECTS: Project[] = [
       },
     ],
     description: [
-      `Apeing AI is a professional Solana trading and analytics platform that enables users to discover tokens in real time, copy smart money wallets, track on-chain activity, and collaborate in community trading rooms. The platform spans 8 feature-rich pages — token discovery, ApeZone meme tracking, copy trade with wallet ranking, portfolio management, PnL analytics, smart wallet tracking, a follower/watchlist system, and community ApeingRooms — with full multi-language support across English, Chinese, Japanese, French, and Arabic.`,
+      `Apeing AI is a professional Solana trading and analytics platform that enables users to discover tokens in real time, copy smart money wallets, track on-chain activity, and collaborate in community trading rooms. The platform spans 8 feature-rich pages — token discovery, ApeZone meme tracking, copy trade with wallet ranking, portfolio management, PnL analytics, smart wallet tracking, a follower/watchlist system, and community ApeingRooms.`,
       `As a Front End Developer, I built the frontend from scratch using Next.js 15 with Turbopack, SCSS modules, and Redux Toolkit for global popup and notification state. I implemented complex data tables with TanStack React Table, integrated ApexCharts and Chart.js for PnL and portfolio visualisations, embedded real-time token charts via the gmgn.cc API, and developed a drag-and-drop room interface with @neodrag/react.`,
     ],
   },
